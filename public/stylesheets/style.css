@@ -1,0 +1,19 @@
+body {
+  font: 20px "Comic Sans MS", Helvetica, Arial, sans-serif;
+}
+body h1 {
+  text-align: center;
+}
+body .jumbotron p {
+  text-align: center;
+}
+
+.navbar {
+  margin-bottom: 2.5%;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/*# sourceMappingURL=style.css.map */

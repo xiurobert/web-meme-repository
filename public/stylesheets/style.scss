@@ -1,6 +1,18 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+  //padding: 50px;
+  font: 20px "Comic Sans MS", Helvetica, Arial, sans-serif;
+  h1 {
+    text-align: center;
+  }
+  .jumbotron {
+    p {
+      text-align: center;
+    }
+  }
+}
+
+.navbar {
+  margin-bottom: 2.5%;
 }
 
 a {

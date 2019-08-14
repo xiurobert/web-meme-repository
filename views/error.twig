@@ -1,7 +1,15 @@
 {% extends 'layout.twig' %}
-
+{% block head %}
+  <link rel="stylesheet" href="/public/stylesheets/error.css" />
+{% endblock %}
 {% block body %}
-  <h1>{{message}}</h1>
-  <h2>{{error.status}}</h2>
-  <pre>{{error.stack}}</pre>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 style="text-align: center">Oof </h1>
+      <h2>{{error.status}} {{ message }}</h2>
+        <pre>{{ error.stack }}</pre>
+    </div>
+
+  </div>
+
 {% endblock %}
