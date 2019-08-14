@@ -5,7 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
+//connect to MongoDB
+//mongoose.connect('mongodb://localhost/testForAuth');
+//var db = mongoose.connection;
 
+//handle mongo error
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function () {
+//   // we're connected!
+// });
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -17,7 +25,8 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
 
-app.use(logger('dev'));
+// middleware setup
+//app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -27,8 +36,11 @@ app.use(sassMiddleware({
   indentedSyntax: true, // true = .sass and false = .scss
   sourceMap: true
 }));
+
+// server static
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
+// routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
