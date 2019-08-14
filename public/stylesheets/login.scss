@@ -1,0 +1,23 @@
+.jumbotron {
+  width: 60%;
+  margin: auto;
+}
+
+.top-level {
+  display: flex;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 5%;
+}
+
+html, body, .top-level {
+  height: 100%;
+}
+
+.input-group {
+  margin-bottom: 2.5%;
+}
+

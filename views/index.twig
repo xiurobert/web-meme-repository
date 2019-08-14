@@ -10,8 +10,18 @@
   <div class="container">
     <div class="jumbotron">
       <h1>{{title}}</h1>
-      <p>Welcome to {{ title }}</p>
-      <i>A collection for all your random programming memes</i>
+      <img src="https://i.imgur.com/rjBWzrk.jpg" alt="a meme" width="25%">
+      <p>
+        Welcome to {{ title }}<br/>
+        A collection for all your random programming memes
+      </p>
+
+      <div class="input-group">
+        <input class="form-control" type="search" placeholder="Search user-submitted memes" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </div>
+      </div>
     </div>
   </div>
 

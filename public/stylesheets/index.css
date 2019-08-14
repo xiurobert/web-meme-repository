@@ -2,4 +2,14 @@ i {
   text-align: center;
 }
 
+.input-group {
+  width: 55%;
+  margin: auto;
+}
+
+img {
+  display: block;
+  margin: auto;
+}
+
 /*# sourceMappingURL=index.css.map */

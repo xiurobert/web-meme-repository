@@ -1,6 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Log in</title>
-</head>
-</html>
+{% extends 'auth.twig' %}
+{% block head %}
+    <link rel="stylesheet" href="/public/stylesheets/login.css">
+{% endblock %}
+{% block body %}
+    <div class="container top-level">
+        <div class="jumbotron">
+
+            <h1>Log In</h1>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="material-icons">person</i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="material-icons">vpn_key</i></span>
+                </div>
+                <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

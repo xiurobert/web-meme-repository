@@ -11,7 +11,7 @@ router.get('/about', function(req, res, next) {
 });
 
 router.get('/login.notrlyphp', function(req, res, next){
-  res.send("I told u its not php right");
+  res.render('login', { title: 'Login'});
 });
 
 module.exports = router;
