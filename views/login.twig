@@ -5,8 +5,20 @@
 {% block body %}
     <div class="container top-level">
         <div class="jumbotron">
+            <div class="row">
+                <div class="col">
+                    <a href="#" onclick="window.history.back();">&lsaquo; Back</a>
+                </div>
+
+                <div class="col" style="text-align: right; display: inline-block">
+                    <a href="/signup.notrlyphp" style="text-align: right">Need an account? &rsaquo;</a>
+                </div>
+            </div>
+
+
 
             <h1>Log In</h1>
+            <img src="https://i.redd.it/2qmc9wbq49g31.png" alt="meme 3" width="50%">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="material-icons">person</i></span>
@@ -19,6 +31,8 @@
                 </div>
                 <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
             </div>
+
+            <input class="btn btn-success" type="submit" value="Submit">
 
         </div>
     </div>
