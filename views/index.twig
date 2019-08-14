@@ -1,11 +1,17 @@
 {% extends 'layout.twig' %}
 
+{% block head %}
+
+  <link rel="stylesheet" href="/public/stylesheets/index.css">
+
+{% endblock %}
 {% block body %}
 
   <div class="container">
     <div class="jumbotron">
       <h1>{{title}}</h1>
       <p>Welcome to {{ title }}</p>
+      <i>A collection for all your random programming memes</i>
     </div>
   </div>
 
