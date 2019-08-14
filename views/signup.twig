@@ -1,7 +1,10 @@
 {% extends 'auth.twig' %}
+
 {% block head %}
     <link rel="stylesheet" href="/public/stylesheets/login.css">
 {% endblock %}
+
+
 {% block body %}
     <div class="container top-level">
         <div class="jumbotron">
@@ -11,14 +14,14 @@
                 </div>
 
                 <div class="col" style="text-align: right">
-                    <a href="/signup.notrlyphp">Need an account? &rsaquo;</a>
+                    <a href="/login.notrlyphp">Log in instead&rsaquo;</a>
                 </div>
             </div>
 
 
 
-            <h1>Log In</h1>
-            <img src="https://i.redd.it/2qmc9wbq49g31.png" alt="meme 3" width="50%">
+            <h1>Sign up</h1>
+            <img src="https://i.redd.it/r2iatlx7kcg31.jpg" alt="meme 3" width="50%">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="material-icons">person</i></span>
@@ -36,5 +39,4 @@
 
         </div>
     </div>
-
 {% endblock %}

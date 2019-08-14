@@ -14,4 +14,7 @@ router.get('/login.notrlyphp', function(req, res, next){
   res.render('login', { title: 'Login'});
 });
 
+router.get('/signup.notrlyphp', function(req, res, next) {
+  res.render("signup", { title: 'Sign Up'});
+});
 module.exports = router;
