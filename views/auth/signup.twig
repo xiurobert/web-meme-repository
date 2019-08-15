@@ -1,4 +1,4 @@
-{% extends 'auth.twig' %}
+{% extends 'auth/auth.twig' %}
 
 {% block head %}
     <link rel="stylesheet" href="/public/stylesheets/login.css">
@@ -6,26 +6,30 @@
 
 
 {% block body %}
-    {% include 'error_modal.twig' with
+    {% include '../tmpl/error_modal.twig' with
         {
             'modal_id': 'somethingNoMatch',
             'modal_title': 'bruh moment',
             'modal_content': "Bruh the passwords don't actually match fix pls"
         } %}
 
-    {% include 'error_modal.twig' with
+    {% include '../tmpl/error_modal.twig' with
         {
             'modal_id': 'duplicateUser',
             'modal_title': 'BRUHHH',
             'modal_content': "dat user already exists. Please use another username"
         } %}
 
-    {% include 'error_modal.twig' with
+    {% include '../tmpl/error_modal.twig' with
         {
             'modal_id': 'inputsBlank',
             'modal_title': 'Blank inputs',
             'modal_content': "Inputs can't be blank bruvv"
         } %}
+
+    <div class="alert alert-success" role="alert" hidden>
+        Successfully logged in!
+    </div>
     <div class="container top-level">
         <div class="jumbotron">
             <div class="row">

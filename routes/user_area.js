@@ -3,7 +3,7 @@ var router = express.Router();
 var auth_mid = require("../mw/requires_login");
 
 router.get('/dash', auth_mid.auth_check, function(req, res, next) {
-    res.render('dash');
+    res.render('user_zone/dash');
 });
 
 

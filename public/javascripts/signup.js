@@ -24,6 +24,7 @@ function execSignup() {
                 } else if (result.includes("match")) {
                     $("#somethingNoMatch").modal();
                 } else {
+                    $(".alert").removeAttr("hidden");
                     window.location.href = "/z/dash";
                 }
             }

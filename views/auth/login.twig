@@ -1,22 +1,26 @@
-{% extends 'auth.twig' %}
+{% extends 'auth/auth.twig' %}
 {% block head %}
     <link rel="stylesheet" href="/public/stylesheets/login.css">
 {% endblock %}
 {% block body %}
-    {% include 'error_modal.twig' with
+    {% include '../tmpl/error_modal.twig' with
         {
             'modal_id': 'noSuchUser',
             'modal_title': 'epic',
             'modal_content': 'Username or password is incorrect. Or the user doesn\'t even exist'
         } %}
 
-    {% include 'error_modal.twig' with
+    {% include '../tmpl/error_modal.twig' with
         {
             'modal_id': 'blankInputs',
             'modal_title': 'Blank inputs',
             'modal_content': "You can't have blank inputs. I mean, you should know that."
         }%}
+    <div class="alert alert-success" role="alert" hidden>
+        Successfully logged in!
+    </div>
     <div class="container top-level">
+
         <div class="jumbotron">
             <div class="row">
                 <div class="col">

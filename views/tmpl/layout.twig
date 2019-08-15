@@ -34,7 +34,14 @@
                 <li class="nav-item"><a class="nav-link" href="/auth/signup">Sign Up</a></li>
             {% elseif logged_in %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="myProfileDropdown" role="button"><i class="material-icons">person</i></a>
+                    <a class="nav-link dropdown-toggle" href="#" id="myProfileDropdown" role="button" data-toggle="dropdown">
+                        <i class="material-icons">person</i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="myProfileDropdown">
+                        <a class="dropdown-item" href="#">My Profile</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="/auth/logout">Log out</a>
+                    </div>
                 </li>
             {% endif %}
         </ul>
