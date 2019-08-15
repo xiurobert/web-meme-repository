@@ -18,16 +18,11 @@ function execSignup() {
                 password: pw,
                 confirmPassword: confirmPw
             },
-            success: function(result, status, xhr) {
+            success: function(result) {
                 if (result.includes("already exists")) {
                     $("#duplicateUser").modal()
                 } else if (result.includes("match")) {
                     $("#somethingNoMatch").modal();
-                }
-            },
-            statusCode: {
-                400: function() {
-
                 }
             }
         })
