@@ -73,7 +73,11 @@ app.use(function(err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    var authed = false;
+    if (req.session && req.session.userId) {
+        authed = true;
+    }
+    res.render('error', { logged_in: authed, error_code: err.status });
 });
 
 module.exports = app;
