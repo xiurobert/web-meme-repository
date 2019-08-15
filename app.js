@@ -4,16 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
+var mongoose = require('mongoose');
 
 //connect to MongoDB
-//mongoose.connect('mongodb://localhost/testForAuth');
-//var db = mongoose.connection;
+mongoose.connect('mongodb://localhost/meme', {useNewUrlParser: true});
+var db = mongoose.connection;
 
 //handle mongo error
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function () {
-//   // we're connected!
-// });
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    // we're connected!
+});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

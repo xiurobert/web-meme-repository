@@ -29,7 +29,22 @@ router.put('/signup', function(req, res, next) {
         var uData = {
             username: req.body.username,
             password: req.body.password
-        }
+        };
+
+        var user = new User({
+            username: uData.username,
+            password: uData.password
+        });
+        user.save(function (err, obj) {
+            if (err) {
+
+                if (err.message.includes("duplicate")) {
+                    return res.send("That user already exists!");
+                }
+                return console.error(err);
+            }
+            return res.send("Successfully signed up")
+        });
     }
 });
 

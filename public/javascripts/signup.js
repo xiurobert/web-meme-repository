@@ -12,7 +12,11 @@ function execSignup() {
                 confirmPassword: $("#confirmPassword").val()
             },
             success: function(result, status, xhr) {
-                alert(result);
+                if (result.includes("already exists")) {
+                    $("#duplicateUser").modal()
+                } else if (result.includes("match")) {
+                    $("#somethingNoMatch").modal();
+                }
             },
             statusCode: {
                 400: function() {
