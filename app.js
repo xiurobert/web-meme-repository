@@ -20,6 +20,7 @@ db.once('open', function () {
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
+var userZoneRouter = require('./routes/user_area');
 
 var app = express();
 
@@ -57,6 +58,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 // routes
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/z', userZoneRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
