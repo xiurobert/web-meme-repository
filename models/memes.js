@@ -20,3 +20,5 @@ var UserSchema = new mongoose.Schema({
         required: true
     }
 });
+
+module.exports = UserSchema;
