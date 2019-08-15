@@ -3,6 +3,10 @@ function execSignup() {
     var pw = $("#password").val();
     var confirmPw = $("#confirmPassword").val();
 
+    if (!username || !pw || !confirmPw) {
+        $("#inputsBlank").modal();
+    }
+
     if (pw !== confirmPw) {
         $("#somethingNoMatch").modal();
     } else {

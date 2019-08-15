@@ -19,6 +19,13 @@
             'modal_title': 'BRUHHH',
             'modal_content': "dat user already exists. Please use another username"
         } %}
+
+    {% include 'error_modal.twig' with
+        {
+            'modal_id': 'inputsBlank',
+            'modal_title': 'Blank inputs',
+            'modal_content': "Inputs can't be blank bruvv"
+        } %}
     <div class="container top-level">
         <div class="jumbotron">
             <div class="row">
