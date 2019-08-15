@@ -1,15 +1,18 @@
 function execSignup() {
+    var username = $("#username").val();
+    var pw = $("#password").val();
+    var confirmPw = $("#confirmPassword").val();
 
-    if ($("#password").val() !== $("#confirmPassword").val()) {
+    if (pw !== confirmPw) {
         $("#somethingNoMatch").modal();
     } else {
         $.ajax({
             url: "/auth/signup",
             method: "PUT",
             data: {
-                username: $("#username").val(),
-                password: $("#password").val(),
-                confirmPassword: $("#confirmPassword").val()
+                username: username,
+                password: pw,
+                confirmPassword: confirmPw
             },
             success: function(result, status, xhr) {
                 if (result.includes("already exists")) {

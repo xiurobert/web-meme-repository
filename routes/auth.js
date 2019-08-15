@@ -7,7 +7,19 @@ router.get('/login', function(req, res, next){
 });
 
 router.post('/login', function(req, res, next){
-    // TODO logic when you post to login
+    if (req.body.username && req.body.password) {
+        User.authenticate(req.body.username, req.body.password, function (error, user) {
+            if (error || !user) {
+                var err = new Error('Wrong username or password.');
+                err.status = 401;
+                return res.send("Email or password wrong");
+            } else {
+                req.session.userId = user._id;
+                return res.redirect('/profile');
+            }
+        });
+    }
+
 });
 
 router.get('/signup', function(req, res, next) {
