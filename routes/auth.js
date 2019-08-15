@@ -15,7 +15,7 @@ router.post('/login', function(req, res, next){
                 return res.send("Email or password wrong");
             } else {
                 req.session.userId = user._id;
-                return res.redirect('/profile');
+                return res.send("Authenticated")
             }
         });
     }
