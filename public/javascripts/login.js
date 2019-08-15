@@ -16,7 +16,7 @@ function execLogin() {
                 if (result.includes("password wrong")) {
                     $("#noSuchUser").modal();
                 } else if (result.includes("Authenticated")){
-                    window.location.href = "/dash"
+                    window.location.href = "/z/dash"
                 }
             }
         })

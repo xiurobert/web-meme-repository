@@ -23,6 +23,8 @@ function execSignup() {
                     $("#duplicateUser").modal()
                 } else if (result.includes("match")) {
                     $("#somethingNoMatch").modal();
+                } else {
+                    window.location.href = "/z/dash";
                 }
             }
         })
