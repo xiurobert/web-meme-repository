@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 var mongoose = require('mongoose');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 //connect to MongoDB
 mongoose.connect('mongodb://localhost/meme', {useNewUrlParser: true});
@@ -34,9 +36,21 @@ app.use(cookieParser());
 app.use(sassMiddleware({
     src: path.join(__dirname, 'public'),
     dest: path.join(__dirname, 'public'),
-    indentedSyntax: true, // true = .sass and false = .scss
+    indentedSyntax: false, // true = .sass and false = .scss
     sourceMap: true
 }));
+
+
+//use sessions for tracking logins
+app.use(session({
+    secret: 'dohdohdohdohdohdohdohdohdohdohdohdoh',
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+        mongooseConnection: db
+    })
+}));
+
 
 // serve static
 app.use('/public', express.static(path.join(__dirname, 'public')));

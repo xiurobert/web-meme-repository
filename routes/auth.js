@@ -43,6 +43,7 @@ router.put('/signup', function(req, res, next) {
                 }
                 return console.error(err);
             }
+            req.session.userId = obj._id;
             return res.send("Successfully signed up")
         });
     }
