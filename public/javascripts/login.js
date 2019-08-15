@@ -23,3 +23,9 @@ function execLogin() {
         })
     }
 }
+
+function runOnEnter(e) {
+    if (e.keyCode === 13) {
+        execLogin()
+    }
+}

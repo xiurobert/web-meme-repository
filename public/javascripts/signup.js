@@ -20,7 +20,7 @@ function execSignup() {
             },
             success: function(result) {
                 if (result.includes("already exists")) {
-                    $("#duplicateUser").modal()
+                    $("#duplicateUser").modal();
                 } else if (result.includes("match")) {
                     $("#somethingNoMatch").modal();
                 } else {
@@ -31,4 +31,10 @@ function execSignup() {
         })
     }
 
+}
+
+function runOnEnter(e) {
+    if (e.keyCode === 13) {
+        execSignup();
+    }
 }
