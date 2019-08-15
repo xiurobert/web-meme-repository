@@ -6,6 +6,10 @@ router.get('/login', function(req, res, next){
     res.render('login', { title: 'Login'});
 });
 
+router.get('/signup', function(req, res, next) {
+    res.render("signup", { title: 'Sign Up'});
+});
+
 router.post('/login', function(req, res, next){
     if (req.body.username && req.body.password) {
         User.authenticate(req.body.username, req.body.password, function (error, user) {
@@ -22,12 +26,7 @@ router.post('/login', function(req, res, next){
 
 });
 
-router.get('/signup', function(req, res, next) {
-    res.render("signup", { title: 'Sign Up'});
-});
-
 router.put('/signup', function(req, res, next) {
-    // TODO logic when you post to signup
 
     // check that password and confirmPassword are the same
     if (req.body.password !== req.body.confirmPassword) {
@@ -58,6 +57,18 @@ router.put('/signup', function(req, res, next) {
             req.session.userId = obj._id;
             return res.send("Successfully signed up")
         });
+    }
+});
+
+router.get('/logout', function(req, res, next) {
+    if (req.session) {
+        req.session.destroy(function(err) {
+            if (err) {
+                return res.send("Could not log out");
+            } else {
+                return res.redirect("/");
+            }
+        })
     }
 });
 
