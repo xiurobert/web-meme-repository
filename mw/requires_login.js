@@ -4,6 +4,8 @@ function requires_auth(req, res, next) {
     } else {
         var err = new Error("Not authenticated");
         err.status = 403;
-        return next(err);
+        return res.redirect("/");
     }
 }
+
+module.exports.auth_check = requires_auth;
