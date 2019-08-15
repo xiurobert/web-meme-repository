@@ -38,7 +38,7 @@ app.use(sassMiddleware({
     sourceMap: true
 }));
 
-// server static
+// serve static
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // routes
