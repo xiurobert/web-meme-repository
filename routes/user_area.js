@@ -11,6 +11,12 @@ router.get('/submit', auth_mid.auth_check, function(req, res, next) {
     res.render('user_zone/submit');
 });
 
+router.get('/complete_submission', auth_mid.auth_check, function(req, res, next) {
+    res.render('user_zone/submission_page', {
+        "submission_title": req.query.title
+    })
+});
+
 router.get('/my_profile', auth_mid.auth_check, function(req, res, next) {
     user.findById(req.session.userId, function (err, user) {
         if (err) {

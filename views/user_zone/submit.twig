@@ -5,6 +5,7 @@
 
 
 {% block head %}
+    <link rel="stylesheet" href="/public/stylesheets/user_zone/submit.css">
 {% endblock %}
 
 {% block body %}
@@ -12,9 +13,27 @@
         <div class="jumbotron">
             <h1>Submission</h1>
             <p>
-                Submit a meme
+{#                TODO: Implement submission#}
+                Submit a meme to PH2
             </p>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Title</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Title of submission" id="title">
+            </div>
+
+            <button class="btn btn-success" id="newSubmission">Create new submission</button>
 
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $("#newSubmission").click(function() {
+            window.location.href = "/z/complete_submission?title=" + $("#title").val();
+        })
+    </script>
 {% endblock %}

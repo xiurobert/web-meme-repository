@@ -1,0 +1,33 @@
+{% extends '../tmpl/layout.twig' %}
+{% set title = "Complete your submission" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/public/stylesheets/user_zone/submit_page.css">
+    <link rel="stylesheet" href="/public/stylesheets/tag_input.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Complete your meme submission</h1>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Title</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Submission title"
+                       id="title" value="{{ submission_title }}">
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Tags</span>
+                </div>
+                <input type="text" class="form-control tag-input" placeholder="Tags" id="tags">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/public/javascripts/tag_input.js"></script>
+{% endblock %}
