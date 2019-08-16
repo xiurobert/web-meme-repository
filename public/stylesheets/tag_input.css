@@ -1,0 +1,19 @@
+.dtag-input-tags {
+  margin: auto;
+  text-align: center;
+}
+
+.dtag-input-tag {
+  background-color: #5bc0de;
+  border-radius: 10px;
+  padding: 0.5% 1.5% 0.5% 1.5%;
+  margin-right: 0.5%;
+  font-size: 80%;
+  color: white;
+}
+.dtag-input-tag span {
+  margin-left: 1%;
+  font-size: 22px;
+}
+
+/*# sourceMappingURL=tag_input.css.map */
