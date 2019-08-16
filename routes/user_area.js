@@ -12,12 +12,18 @@ router.get('/submit', auth_mid.auth_check, function(req, res, next) {
 });
 
 router.get('/my_profile', auth_mid.auth_check, function(req, res, next) {
-    var u = user.findById(req.session.userId);
-    res.render('user_zone/my_profile',
-        {
-            "email": u.email,
-            "username": u.username
-        })
+    user.findById(req.session.userId, function (err, user) {
+        if (err) {
+            res.send("500 Could not get user profile");
+            next(err);
+        }
+        res.render('user_zone/my_profile',
+            {
+                "email": user.email,
+                "username": user.username
+            });
+    });
+
 });
 
 
