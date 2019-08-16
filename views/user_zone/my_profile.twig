@@ -1,5 +1,6 @@
 {% extends '../tmpl/layout.twig' %}
 {% set logged_in = true %}
+{% set title = "Your Profile | PH2" %}
 {% set nav_selected = "my_profile" %}
 
 
@@ -17,12 +18,18 @@
                     <span class="input-group-text"><i class="material-icons">email</i></span>
                 </div>
                 <input type="text" class="form-control" placeholder="{{ email }}" id="email" disabled>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="editEmail">Edit</button>
+                </div>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="material-icons">person</i></span>
                 </div>
                 <input type="text" class="form-control" placeholder="{{ username }}" id="username" disabled>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="editUsername">Edit</button>
+                </div>
             </div>
 
         </div>
