@@ -6,5 +6,9 @@ router.get('/dash', auth_mid.auth_check, function(req, res, next) {
     res.render('user_zone/dash');
 });
 
+router.get('/submit', auth_mid.auth_check, function(req, res, next) {
+    res.render('user_zone/submit');
+});
+
 
 module.exports = router;

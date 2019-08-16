@@ -14,6 +14,7 @@
                     Big oof
                 {% endif %}
             </h1>
+            <h2>{{error.status}} {{ message }}</h2>
             {% if error_code == 404 %}
               <img src="https://preview.redd.it/55lw4hcsvlg31.png?width=960&crop=smart&auto=webp&s=51b11adfaeb4df57675f14ecb8107df8dd9124fe" width="30%">
             {% elseif error_code == 500 %}
@@ -21,7 +22,6 @@
             {% else %}
               Big oof
             {% endif %}
-            <h2>{{error.status}} {{ message }}</h2>
             {% if error_code == 500 %}
                 <pre>{{ error.stack }}</pre>
             {% endif %}
