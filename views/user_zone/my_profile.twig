@@ -4,15 +4,26 @@
 
 
 {% block head %}
+    <link rel="stylesheet" href="/public/stylesheets/user_zone/my_profile.css">
 {% endblock %}
 
 {% block body %}
     <div class="container">
         <div class="jumbotron">
             <h1>My profile</h1>
-            <p>
-                {{ username }}: {{ email }}
-            </p>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="material-icons">email</i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="{{ email }}" id="email" disabled>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="material-icons">person</i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="{{ username }}" id="username" disabled>
+            </div>
 
         </div>
     </div>
