@@ -27,6 +27,13 @@
             'modal_content': "Inputs can't be blank bruvv"
         } %}
 
+    {% include '../tmpl/error_modal.twig' with
+        {
+            'modal_id': 'emailError',
+            'modal_title': 'Email format invalid',
+            'modal_content': "That's an invalid email format. We won't be able to send emails to that address."
+        }%}
+
     <div class="alert alert-success" role="alert" hidden>
         Successfully signed up!
     </div>
