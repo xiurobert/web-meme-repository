@@ -14,13 +14,17 @@ var UserSchema = new mongoose.Schema({
 });
 /**
  * I didn't steal any code over here don't look
- * @param username
- * @param password
- * @param callback
+ * @param username Either username or email
+ * @param password Unencrypted password
+ * @param callback if you wanna pass it I guess
  */
 //authenticate input against database
 UserSchema.statics.authenticate = function (username, password, callback) {
-    User.findOne({ username: username })
+    User.findOne({ $or:
+            [
+                {username: username},
+                {email: username}
+            ] })
         .exec(function (err, user) {
             if (err) {
                 return callback(err)
