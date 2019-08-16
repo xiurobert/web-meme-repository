@@ -4,13 +4,13 @@ var sel = $(".tag-input");
 
 $(document).ready(function() {
 
-
     var c2a = sel.parent();
     if (sel.parent().hasClass("input-group")){
-        c2a = c2a.parent();
+        c2a.after('<div class="dtag-input-tags"></div>')
+    } else {
+        sel.append('<div class="dtag-input-tags"></div>');
     }
 
-    c2a.append('<div class="dtag-input-tags"></div>');
 
     function deleteLastTag() {
         dtag_tags.pop();
