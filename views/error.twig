@@ -15,14 +15,16 @@
                 {% endif %}
             </h1>
             {% if error_code == 404 %}
-{#              Todo MORE MEMES #}
+              <img src="https://preview.redd.it/55lw4hcsvlg31.png?width=960&crop=smart&auto=webp&s=51b11adfaeb4df57675f14ecb8107df8dd9124fe" width="30%">
             {% elseif error_code == 500 %}
               <img src="https://pics.me.me/browser-server-500-internal-server-error-43576113.png" width="30%">
             {% else %}
               Big oof
             {% endif %}
             <h2>{{error.status}} {{ message }}</h2>
-            <pre>{{ error.stack }}</pre>
+            {% if error_code == 500 %}
+                <pre>{{ error.stack }}</pre>
+            {% endif %}
         </div>
 
     </div>
