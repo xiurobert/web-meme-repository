@@ -3,9 +3,22 @@
   width: 60%;
 }
 
-.btn-group {
+.btn {
   display: block;
   margin: auto;
+}
+
+.memepreview {
+  display: block;
+  margin: auto;
+}
+
+#submitMeme {
+  margin-top: 2.5%;
+}
+
+.custom-file-label {
+  font-size: 90%;
 }
 
 /*# sourceMappingURL=submit_page.css.map */

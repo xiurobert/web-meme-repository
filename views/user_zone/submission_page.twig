@@ -10,6 +10,19 @@
 
 {% block body %}
     <div class="container">
+        <div class="alert alert-danger alert-dismissible fade show invalidUrl" role="alert" hidden>
+            <strong>Hey!</strong> That meme link is invalid!
+        </div>
+        <div class="alert alert-danger alert-dismissible fade show emptyFields" role="alert" hidden>
+            <strong>Hey!</strong> Title and/or tags can't be blank!
+        </div>
+        <div class="alert alert-danger alert-dismissible fade show emptyMemeLink" role="alert" hidden>
+            <strong>Hey!</strong> Meme URL can't be blank!
+        </div>
+
+        <div class="alert alert-danger alert-dismissible fade show emptyFile" role="alert" hidden>
+            <strong>Hey!</strong> You didn't attach a meme!
+        </div>
         <div class="jumbotron">
             <h1>Complete your meme submission</h1>
             <div class="input-group">
@@ -31,7 +44,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Description</span>
                 </div>
-                <textarea class="form-control" placeholder="Optional"></textarea>
+                <textarea class="form-control" placeholder="Optional" id="description"></textarea>
             </div>
 
             <div class="input-group">
@@ -43,11 +56,21 @@
                     </div>
                 </div>
                 <input type="text" class="form-control" placeholder="Link to meme" id="memeLink">
-                <div class="custom-file" hidden>
-                    <input type="file" class="custom-file-input" id="inputGroupFile01">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                <div class="input-group-append" id="previewMeme">
+                    <button class="btn btn-outline-secondary" type="button" onclick="previewMeme()">Preview</button>
+                </div>
+                <div class="custom-file form-control" hidden>
+                    <input type="file" class="custom-file-input" id="mediaFile"
+                           onchange="procFile(this)">
+                    <label class="custom-file-label" for="mediaFile">Upload your meme</label>
                 </div>
             </div>
+
+            <img src="" width="30%" class="memepreview"/>
+
+            <button class="btn btn-primary" type="submit" id="submitMeme" onclick="submitMeme()">Submit meme!</button>
+
+
 
         </div>
     </div>
