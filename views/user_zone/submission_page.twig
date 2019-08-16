@@ -33,10 +33,27 @@
                 </div>
                 <textarea class="form-control" placeholder="Optional"></textarea>
             </div>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Attach meme</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#" id="attachLink">Link</a>
+                        <a class="dropdown-item" href="#" id="attachMedia">Upload</a>
+                    </div>
+                </div>
+                <input type="text" class="form-control" placeholder="Link to meme" id="memeLink">
+                <div class="custom-file" hidden>
+                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+            </div>
+
         </div>
     </div>
 {% endblock %}
 
 {% block js %}
     <script src="/public/javascripts/tag_input.js"></script>
+    <script src="/public/javascripts/complete_submission.js"></script>
 {% endblock %}
