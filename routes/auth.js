@@ -61,12 +61,12 @@ router.put('/signup', function(req, res, next) {
             if (err) {
 
                 if (err.message.includes("duplicate")) {
-                    return res.send("That user already exists!");
+                    return res.status(400).send("That user already exists!");
                 }
                 return console.error(err);
             }
             req.session.userId = obj._id;
-            return res.send("Successfully signed up")
+            return res.status(200).end("Successfully signed up")
         });
     }
 });
@@ -75,7 +75,7 @@ router.get('/logout', function(req, res, next) {
     if (req.session) {
         req.session.destroy(function(err) {
             if (err) {
-                return res.send("Could not log out");
+                return res.status(500).end("Could not log out");
             } else {
                 return res.redirect("/");
             }

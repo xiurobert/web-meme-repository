@@ -23,52 +23,63 @@
         <div class="alert alert-danger alert-dismissible fade show emptyFile" role="alert" hidden>
             <strong>Hey!</strong> You didn't attach a meme!
         </div>
+
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>Information</strong>
+            The application is currently unable to process meme file uploads. If you have custom memes, please
+            upload them to a file sharing website and submit that link instead
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <div class="jumbotron">
-            <h1>Complete your meme submission</h1>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Title</span>
-                </div>
-                <input type="text" class="form-control" placeholder="Submission title"
-                       id="title" value="{{ submission_title }}">
-            </div>
 
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Tags</span>
+                <h1>Complete your meme submission</h1>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Title</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Submission title"
+                           id="title" value="{{ submission_title }}">
                 </div>
-                <input type="text" class="form-control tag-input" placeholder="Tags" id="tags">
-            </div>
 
-            <div class="input-group txta">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Description</span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Tags</span>
+                    </div>
+                    <input type="text" class="form-control tag-input" placeholder="Tags" id="tags">
                 </div>
-                <textarea class="form-control" placeholder="Optional" id="description"></textarea>
-            </div>
 
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Attach meme</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#" id="attachLink">Link</a>
-                        <a class="dropdown-item" href="#" id="attachMedia">Upload</a>
+                <div class="input-group txta">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Description</span>
+                    </div>
+                    <textarea class="form-control" placeholder="Optional" id="description"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Attach meme</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" id="attachLink">Link</a>
+                            <a class="dropdown-item disabled" href="#" id="attachMedia">Upload</a>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Link to meme" id="memeLink">
+                    <div class="input-group-append" id="previewMeme">
+                        <button class="btn btn-outline-secondary" type="button" onclick="previewMeme()">Preview</button>
+                    </div>
+                    <div class="custom-file form-control" hidden>
+                        <input type="file" class="custom-file-input" id="mediaFile"
+                               onchange="procFile(this)">
+                        <label class="custom-file-label" for="mediaFile">Upload your meme</label>
                     </div>
                 </div>
-                <input type="text" class="form-control" placeholder="Link to meme" id="memeLink">
-                <div class="input-group-append" id="previewMeme">
-                    <button class="btn btn-outline-secondary" type="button" onclick="previewMeme()">Preview</button>
-                </div>
-                <div class="custom-file form-control" hidden>
-                    <input type="file" class="custom-file-input" id="mediaFile"
-                           onchange="procFile(this)">
-                    <label class="custom-file-label" for="mediaFile">Upload your meme</label>
-                </div>
-            </div>
 
-            <img src="" width="30%" class="memepreview"/>
+                <img src="" width="30%" class="memepreview"/>
 
-            <button class="btn btn-primary" type="submit" id="submitMeme" onclick="submitMeme()">Submit meme!</button>
+                <button class="btn btn-primary" type="submit" id="submitMeme" onclick="ajaxLinkMeme()">Submit meme!</button>
+
 
 
 

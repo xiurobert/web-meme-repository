@@ -7,25 +7,25 @@ var crypto = require("crypto");
 
 var main = require("../app");
 
-var multer = require('multer');
+//var multer = require('multer');
 var date = Date.now();
-var GridFsStorage = require('multer-gridfs-storage')({
-    url: 'mongodb://localhost:27017/meme',
-    //db: main.mango,
-    filename: function (req, file, cb) {
-
-        cb(null, file.fieldname + '_' + date + '.');
-    },
-
-    metadata: function (req, file, cb) {
-        cb(null, {originalFilename: file.originalname, mimetype: file.mimetype});
-    },
-    root: 'memeFiles'
-});
-
-var upload = multer({
-    storage: GridFsStorage
-});
+// var GridFsStorage = require('multer-gridfs-storage')({
+//     url: 'mongodb://localhost:27017/meme',
+//     //db: main.mango,
+//     filename: function (req, file, cb) {
+//
+//         cb(null, file.fieldname + '_' + date + '.');
+//     },
+//
+//     metadata: function (req, file, cb) {
+//         cb(null, {originalFilename: file.originalname, mimetype: file.mimetype});
+//     },
+//     root: 'memeFiles'
+// });
+//
+// var upload = multer({
+//     storage: GridFsStorage
+// });
 
 
 router.get('/dash', auth_mid.auth_check, function(req, res, next) {
@@ -57,31 +57,95 @@ router.get('/my_profile', auth_mid.auth_check, function(req, res, next) {
 
 });
 
-router.put('/submitMeme/:type', auth_mid.auth_check, function (req, res, next) {
-    if (req.params.type === "link") {
-        upload.none(function(req, res, next) {
-            if (req.body.title && req.body.url) {
+// router.put('/submitMeme/:type', auth_mid.auth_check, function (req, res, next) {
+//     if (req.params.type === "link") {
+//         upload.none(function(req, res, next) {
+//             if (req.body.title && req.body.url) {
+//
+//                 // simple check to see if ur reposting URL
+//                 Meme.findOne({mediaLink: req.body.url}, function (err, meme) {
+//                     if (err) {
+//                         next(err);
+//                     }
+//                     res.send("400 ur reposting");
+//                 });
+//
+//                 var meme = new Meme({
+//                     key: crypto.createHash("sha256")
+//                         .update(req.body.title + date + req.body.url)
+//                         .digest("base64").substring(0, 6), // create 6 char unique key for each uploaded meme
+//                     uId: req.session.userId,
+//                     ...(req.body.tags && {keywords: req.body.tags}),
+//                     ...(req.body.desc && {description: req.body.desc}),
+//                     memeFormat: "url",
+//                     mediaLink: req.body.url
+//
+//                 });
+//
+//                 meme.save(function(err, obj) {
+//                     if (err) {
+//                         next(err);
+//                     }
+//                 });
+//                 res.send("200 Meme inserted (URL)");
+//             } else {
+//                 res.send("400 No title and/or url")
+//             }
+//         });
+//     } else if (req.params.type === "file") {
+//         upload.single("meme_upload", function(req, res, next) {
+//             if (req.body.title && req.file) {
+//                 var meme = new Meme({
+//                     key: crypto.createHash("sha256")
+//                         .update(req.body.title + date + req.body.file.filename)
+//                         .digest("base64").substring(0, 6),
+//                     uId: req.session.userId,
+//                     ...(req.body.tags && {keywords: req.body.tags}),
+//                     ...(req.body.desc && {description: req.body.desc}),
+//                     memeFormat: "file",
+//                     mediaGridFsId: req.file.id
+//                 });
+//
+//                 meme.save(function(err, obj) {
+//                     if (err) {
+//                         next(err);
+//                     }
+//                 });
+//                 res.send("200 Meme inserted (File)")
+//             } else {
+//                 res.send("400 No title and/or file")
+//             }
+//
+//         })
+//     } else {
+//         res.send("400 Invalid MEMEtype")
+//     }
+// });
 
-                // simple check to see if ur reposting URL
-                Meme.findOne({mediaLink: req.body.url}, function (err, meme) {
-                    if (err) {
-                        next(err);
-                    }
-                    res.send("400 ur reposting");
-                });
-
-                var meme = new Meme({
-                    key: crypto.createHash("sha256")
-                        .update(req.body.title + time + req.body.url)
-                        .digest("base64").substring(0, 6), // create 6 char unique key for each uploaded meme
-                    uId: req.session.userId,
-                        ...(req.body.tags && {tags: req.body.tags})
-
-                })
-            } else {
-                res.send("400 No title and/or url")
-            }
+router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
+    if (req.body.title && req.body.url) {
+        var meme = new Meme({
+            key: crypto.createHash("sha256")
+                .update(req.body.title + date + req.body.url)
+                .digest("base64").substring(0, 6), // create 6 char unique key for each uploaded meme
+            uId: req.session.userId,
+            ...(req.body.tags && {keywords: req.body.tags.split(",")}),
+            ...(req.body.desc && {description: req.body.desc}),
+            memeFormat: "url",
+            mediaLink: req.body.url
         });
+
+        meme.save(function(err, obj) {
+            if (err) {
+                res.status(500).send("Error saving meme");
+                return next(err);
+            } else {
+                return res.status(200).end("200 Meme added (Link),"+obj.key)
+            }
+
+        })
+    } else {
+        return res.status(400).end("400 No title and/or url");
     }
 });
 

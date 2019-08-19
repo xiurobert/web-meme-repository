@@ -8,12 +8,14 @@ let memeSchema = new mongoose.Schema({
     },
     uId: {
         type: String,
-        unique: true,
         required: true,
         trim: true
     },
     keywords: {
         type: Array
+    },
+    description: {
+        type: String
     },
     memeFormat: {
         type: String,

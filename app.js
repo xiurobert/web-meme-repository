@@ -6,12 +6,8 @@ var sassMiddleware = require('node-sass-middleware');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-var bodyParser = require('body-parser');
 var notFoundMw = require("./mw/404_mw");
 var errorHandler = require("./mw/ehandler");
-
-var GridFsStream = require('gridfs-stream');
-
 
 
 //connect to MongoDB
@@ -22,15 +18,12 @@ var db = mongoose.connection;
 
 //handle mongo error
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-    // we're connected!
-});
-
 
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var userZoneRouter = require('./routes/user_area');
+var memeRouter = require('./routes/memez');
 
 
 var app = express();
@@ -70,6 +63,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/z', userZoneRouter);
+app.use('/meme', memeRouter);
 
 // Error handlers
 app.use(notFoundMw);

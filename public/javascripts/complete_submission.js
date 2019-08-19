@@ -110,14 +110,7 @@ function submitMeme() {
         $(".emptyFile").hide();
     }
 
-
-    if (memeFile.size > 200 * 1024 * 1024) {
-        // Ban files larger than 200MiB
-        alert("Your file is too big. It has to be less than 200MiB");
-        return;
-    }
-
-
+    ajaxMeme()
 
 }
 
@@ -126,4 +119,65 @@ function procFile(obj) {
     customMemeFile = obj.files[0];
     customFilePreviewUrl = URL.createObjectURL(obj.files[0]);
     previewMeme(customFilePreviewUrl)
+}
+
+function ajaxMeme() {
+
+    if (!$("#title").val()) {
+        alert("Title can't be blank");
+        return;
+    }
+
+    if (submissionType === "link" && !$("#url").val()) {
+        alert("URL can't be blank!");
+        return;
+    }
+
+    if (submissionType === "file" && !customMemeFile) {
+        alert("File can't be empty!");
+        return;
+    }
+    $.ajax({
+        method: "PUT",
+        url: "/z/submitMeme/" + submissionType,
+        contentType: "multipart/form-data",
+        data: {
+            title: $("#title").val(),
+            tags: dtag_tags,
+            desc: $("#description").val(),
+            url: $("#attachLink").val(),
+            file: customMemeFile
+        },
+        success: function(res) {
+            alert(res)
+        }
+    })
+}
+
+function ajaxLinkMeme() {
+    if (!$("#title").val()) {
+        alert("Title can't be blank");
+        return;
+    }
+
+    if (submissionType === "link" && !$("#memeLink").val()) {
+        alert("URL can't be blank!");
+        return;
+    }
+
+    $.ajax({
+        method: "PUT",
+        url: "/z/submitMemeLink",
+        data: {
+            title: $("#title").val(),
+            tags: dtag_tags.join(),
+            desc: $("#description").val(),
+            url: $("#memeLink").val(),
+        },
+        success: function(res) {
+            if (res.includes("200 Meme")) {
+                window.location.href
+            }
+        }
+    })
 }
