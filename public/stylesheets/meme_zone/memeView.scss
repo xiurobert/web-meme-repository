@@ -1,0 +1,22 @@
+.jumbotron {
+    position: relative;
+    img {
+        display: block;
+        margin: auto;
+    }
+    #dropDown {
+        position: absolute;
+        right: 2.5%;
+        top: 1%;
+        cursor: pointer;
+    }
+
+    .danger {
+        color: #dc3545 !important;
+
+    }
+    .danger:focus {
+        background-color: #dc3545 !important;
+        color: white !important;
+    }
+}

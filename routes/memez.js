@@ -11,11 +11,7 @@ router.get('/:id', function(req, res, next) {
 
     Meme.findOne({
         key: req.params.id
-    }, function(err, meme) {
-        if (err) {
-            return res.status(500).end("DB error");
-        }
-
+    }).lean().then(function(meme) {
         if (!meme) {
             return next();
         }
@@ -34,7 +30,8 @@ router.get('/:id', function(req, res, next) {
                     tags: meme.keywords,
                     desc: meme.description,
                     url: meme.mediaLink,
-                    logged_in: (req.session && req.session.userId)
+                    logged_in: (req.session && req.session.userId),
+                    key: meme.key
                 })
         })
 
