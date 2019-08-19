@@ -176,7 +176,7 @@ function ajaxLinkMeme() {
         },
         success: function(res) {
             if (res.includes("200 Meme")) {
-                window.location.href
+                window.location.href = "/meme/"+res.split(",")[1];
             }
         }
     })
