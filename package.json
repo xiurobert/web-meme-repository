@@ -22,5 +22,6 @@
     "multer-gridfs-storage": "^3.3.0",
     "node-sass-middleware": "^0.11.0",
     "twig": "^1.13.3"
-  }
+  },
+  "devDependencies": {}
 }

@@ -1,12 +1,12 @@
-var mongoose = require('mongoose');
-var UserSchema = new mongoose.Schema({
+let mongoose = require('mongoose');
+let memeSchema = new mongoose.Schema({
     key: {
         type: String,
         unique: true,
         required: true,
         trim: true
     },
-    username: {
+    uId: {
         type: String,
         unique: true,
         required: true,
@@ -15,10 +15,17 @@ var UserSchema = new mongoose.Schema({
     keywords: {
         type: Array
     },
-    mediaLink: {
+    memeFormat: {
         type: String,
         required: true
+    },
+    mediaLink: {
+        type: String
+    },
+    mediaGridFsId: {
+        type: String
     }
 });
 
-module.exports = UserSchema;
+let Meme = mongoose.model("Meme", memeSchema);
+module.exports = Meme;

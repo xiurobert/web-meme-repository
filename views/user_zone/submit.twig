@@ -24,7 +24,7 @@
                 <input type="text" class="form-control" placeholder="Title of submission" id="title">
             </div>
 
-            <button class="btn btn-success" id="newSubmission">Create new submission</button>
+            <button class="btn btn-success" id="newSubmission" type="submit">Create new submission</button>
 
         </div>
     </div>
@@ -34,6 +34,12 @@
     <script>
         $("#newSubmission").click(function() {
             window.location.href = "/z/complete_submission?title=" + $("#title").val();
+        });
+
+        $(document).on('keyup', function(e) {
+            if (e.which === 13) {
+                window.location.href = "/z/complete_submission?title=" + $("#title").val();
+            }
         })
     </script>
 {% endblock %}
