@@ -29,7 +29,16 @@ var date = Date.now();
 
 
 router.get('/dash', auth_mid.auth_check, function(req, res, next) {
-    res.render('user_zone/dash');
+    Meme.find({
+        uId: req.session.userId
+    }, function(err, obj) {
+        if (err) {
+            return next(err);
+        }
+        res.render('user_zone/dash', {memes: obj});
+    });
+
+
 });
 
 router.get('/submit', auth_mid.auth_check, function(req, res, next) {
@@ -125,6 +134,7 @@ router.get('/my_profile', auth_mid.auth_check, function(req, res, next) {
 router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
     if (req.body.title && req.body.url) {
         var meme = new Meme({
+            title: req.body.title,
             key: crypto.createHash("sha256")
                 .update(req.body.title + date + req.body.url)
                 .digest("base64").substring(0, 6), // create 6 char unique key for each uploaded meme
@@ -133,6 +143,7 @@ router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
             ...(req.body.desc && {description: req.body.desc}),
             memeFormat: "url",
             mediaLink: req.body.url
+
         });
 
         meme.save(function(err, obj) {

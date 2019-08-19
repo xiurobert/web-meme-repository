@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Meme = require("../models/memes");
 var user = require("../models/user");
+var auth_mid = require("../mw/requires_login");
 
 router.get('/:id', function(req, res, next) {
     if (!req.params.id) {
@@ -13,6 +14,10 @@ router.get('/:id', function(req, res, next) {
     }, function(err, meme) {
         if (err) {
             return res.status(500).end("DB error");
+        }
+
+        if (!meme) {
+            return next();
         }
 
         user.findById(meme.uId, function(err, user) {
@@ -38,7 +43,7 @@ router.get('/:id', function(req, res, next) {
 
 });
 
-router.get('/:memeId/delete', function(req, res, next) {
+router.get('/:memeId/delete', auth_mid.auth_check, function(req, res, next) {
 
     if (!req.params.memeId) {
         return res.status(400).end("Meme id is blank")
@@ -68,6 +73,32 @@ router.get('/:memeId/delete', function(req, res, next) {
         })
 
     })
+});
+
+router.get('/:memeId/update', auth_mid.auth_check, function(req, res, next) {
+
+    if (!req.params.memeId) {
+        return res.status(400).end("Meme id is blank")
+    }
+    Meme.findOne({
+        key: req.params.memeId
+    }, function(err, meme) {
+        if (err) {
+            return res.status(500).end("DB error");
+        }
+
+        if (!meme) {
+            return res.status(404).end("That meme doesn't exist!");
+        }
+
+        if (meme.uId !== req.session.userId) {
+            return res.status(403).end("As much as you hate this meme or its user you can't edit what is not yours")
+        }
+
+
+
+    })
+
 });
 
 module.exports = router;

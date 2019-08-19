@@ -6,6 +6,10 @@ let memeSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    title: {
+        type: String,
+        required: true
+    },
     uId: {
         type: String,
         required: true,

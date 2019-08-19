@@ -1,0 +1,21 @@
+#yourMemes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    p {
+        text-align: center;
+        font-weight: bold;
+        background-color: aqua;
+        margin-bottom: 0;
+    }
+
+    .meme {
+        border: 1px solid black;
+        max-width: 30%;
+        flex-grow: 1;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        cursor: pointer;
+    }
+}
