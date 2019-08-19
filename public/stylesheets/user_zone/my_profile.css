@@ -7,4 +7,13 @@ h1 {
   width: 50%;
 }
 
+.btn {
+  text-align: center;
+}
+
+#editProfile {
+  margin: auto;
+  display: block;
+}
+
 /*# sourceMappingURL=my_profile.css.map */

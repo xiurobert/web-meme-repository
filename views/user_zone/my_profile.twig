@@ -18,21 +18,32 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="material-icons">email</i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="{{ email }}" id="email" disabled>
+                <input type="text" class="form-control" value="{{ email }}"
+                       placeholder="{{ email }}" id="email" disabled>
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="editEmail">Edit</button>
+                    <button class="btn btn-outline-secondary" type="button" id="editEmail"
+                            onclick="editEmail()">Edit</button>
                 </div>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="material-icons">person</i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="{{ username }}" id="username" disabled>
+                <input type="text" class="form-control" value="{{ username }}"
+                       placeholder="{{ username }}" id="username" disabled>
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="editUsername">Edit</button>
+                    <button class="btn btn-outline-secondary" type="button" id="editUsername"
+                            onclick="editUsername()">Edit</button>
                 </div>
             </div>
 
+            <button class="btn btn-primary" type="submit" id="editProfile"
+                    onclick="editProfile()">Save changes</button>
+
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/public/javascripts/edit_profile.js"></script>
 {% endblock %}
