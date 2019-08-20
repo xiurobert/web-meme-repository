@@ -87,7 +87,7 @@ router.put('/my_profile/update', auth_mid.auth_check, function(req, res, next) {
         }
 
         user.findByIdAndUpdate(req.session.userId,
-            {email: req.body.email, username: req.body.username}).then(function(usr) {
+            {email: req.body.email, username: sanitizer.sanitize(req.body.username)}).then(function(usr) {
                 return res.status(200).send("update successful");
         }).catch(function(err) {
             res.status = 500;
@@ -203,7 +203,7 @@ router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
             ...(req.body.tags && {keywords: tagsArr}),
             ...(req.body.desc && {description: sanitizer.sanitize(req.body.desc)}),
             memeFormat: "url",
-            mediaLink: req.body.url
+            mediaLink: sanitizer.sanitize(req.body.url)
 
         });
 
