@@ -8,6 +8,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var notFoundMw = require("./mw/404_mw");
 var errorHandler = require("./mw/ehandler");
+var Twig = require("twig");
 
 
 //connect to MongoDB
@@ -26,10 +27,11 @@ var authRouter = require('./routes/auth');
 var userZoneRouter = require('./routes/user_area');
 var memeRouter = require('./routes/memez');
 
-
+Twig.cache(false);
 var app = express();
 
 // view engine setup
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
 

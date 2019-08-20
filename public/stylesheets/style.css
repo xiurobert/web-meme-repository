@@ -8,6 +8,29 @@ body .jumbotron p {
   text-align: center;
 }
 
+.footer {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  font-size: 95%;
+  color: white;
+}
+.footer span {
+  margin-bottom: 0;
+}
+.footer .fab:hover {
+  color: #007bff;
+  cursor: pointer;
+}
+.footer .copyright {
+  float: left;
+}
+.footer .stats {
+  float: right;
+}
+
 .navbar {
   margin-bottom: 2.5%;
 }

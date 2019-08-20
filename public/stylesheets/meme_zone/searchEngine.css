@@ -25,4 +25,15 @@
   margin-top: 1%;
 }
 
+#noResultsMsg h1 {
+  font-weight: bold;
+}
+#noResultsMsg h2 {
+  text-align: center;
+  font-size: 120%;
+}
+#noResultsMsg .hint {
+  font-family: Arial, sans-serif;
+}
+
 /*# sourceMappingURL=searchEngine.css.map */

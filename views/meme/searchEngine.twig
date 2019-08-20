@@ -8,6 +8,20 @@
 {% block body %}
     <div class="container">
         <div class="jumbotron">
+            <div class="input-group">
+                <input class="form-control" type="search" placeholder="Search user-submitted memes" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success" type="submit" onclick="searchMeme()">Search</button>
+                </div>
+            </div>
+            <h1>Search results</h1>
+            <div id="noResultsMsg">
+                <h1>Big oof</h1>
+                <h2>There are no memes with that title, description or tag</h2>
+                <p class="hint">Hint: I can't search for partial words!
+                    <br>E.g. if the title is "Acoolmeme", simply searching for "meme" won't work!</p>
+            </div>
+
             {% for result in memes %}
                 <div class="meme-result">
                     <p>
@@ -20,4 +34,9 @@
             {% endfor %}
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/public/javascripts/searchResults.js"></script>
+    <script src="/public/javascripts/search.js"></script>
 {% endblock %}
