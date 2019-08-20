@@ -5,6 +5,7 @@ var Meme = require("../models/memes");
 var auth_mid = require("../mw/requires_login");
 var crypto = require("crypto");
 let validate = require("email-validator");
+var sanitizer = require("sanitizer");
 
 //var multer = require('multer');
 var date = Date.now();
@@ -182,6 +183,8 @@ router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
                 if (!tagsArr[i].match(/^[a-zA-Z0-9 ]*$/)) {
                     return res.status(400).send("Tag at position " + i + " ("+tagsArr[i]+")" + " is not alphanumeric");
                 }
+
+                tagsArr[i] = sanitizer.sanitize(tagsArr[i]);
             }
         }
 
@@ -189,14 +192,16 @@ router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
             return res.status(400).send("Base64 images are disallowed");
         }
 
+
+
         var meme = new Meme({
-            title: req.body.title,
+            title: sanitizer.sanitize(req.body.title),
             key: crypto.createHash("sha256")
                 .update(req.body.title + date + req.body.url)
                 .digest("base64").substring(0, 6), // create 6 char unique key for each uploaded meme
             uId: req.session.userId,
-            ...(req.body.tags && {keywords: req.body.tags.split(",")}),
-            ...(req.body.desc && {description: req.body.desc}),
+            ...(req.body.tags && {keywords: tagsArr}),
+            ...(req.body.desc && {description: sanitizer.sanitize(req.body.desc)}),
             memeFormat: "url",
             mediaLink: req.body.url
 
