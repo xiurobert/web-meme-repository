@@ -34,10 +34,14 @@ $("#editProfile").click(function() {
         success: function(res) {
             if (res.includes("update successful")) {
                 $("#successfulUpdate").show();
+                setTimeout(function() {
+                    window.location.reload(true);
+                }, 500);
             } else if (res.includes("Email is invalid!")) {
                 $("#emailError").show();
             } else {
                 $("#dbError").show();
+
             }
         }
     })
