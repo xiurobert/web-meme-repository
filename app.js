@@ -11,15 +11,12 @@ var errorHandler = require("./mw/ehandler");
 var Twig = require("twig");
 
 
+
+
 //connect to MongoDB
-const mango_conn = mongoose.connect('mongodb://localhost/meme',
-    {useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true});
-var db = mongoose.connection;
 
+let mongoUri = "";
 
-
-//handle mongo error
-db.on('error', console.error.bind(console, 'connection error:'));
 
 
 var indexRouter = require('./routes/index');
@@ -27,8 +24,18 @@ var authRouter = require('./routes/auth');
 var userZoneRouter = require('./routes/user_area');
 var memeRouter = require('./routes/memez');
 
-Twig.cache(false);
+//Twig.cache(false);
 var app = express();
+
+let config = app.get('env') === 'development' ? require("./config.json") : require("./config.prod.json");
+
+const mango_conn = mongoose.connect(config.mongoUri,
+    {useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true});
+var db = mongoose.connection;
+
+//handle mongo error
+db.on('error', console.error.bind(console, 'connection error:'));
+
 
 // view engine setup
 
