@@ -185,7 +185,9 @@ router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
             }
         }
 
-
+        if (req.body.url.includes("base64")) {
+            return res.status(400).send("Base64 images are disallowed");
+        }
 
         var meme = new Meme({
             title: req.body.title,

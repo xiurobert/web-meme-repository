@@ -21,3 +21,6 @@ lol?
 - [ ] Limit usernames to alphanumerical, underscores and dash, 64 chars max
 - [ ] Limit tags to max chars 64
 - [ ] Limit meme title to max chars 256
+- [ ] Browse page
+- [ ] Random meme
+- [ ] Add search by user

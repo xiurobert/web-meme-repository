@@ -165,6 +165,29 @@ function ajaxLinkMeme() {
         return;
     }
 
+    if ($("#title").length > 128) {
+        $(".titleTooLong").removeAttr("hidden");
+        return;
+    }
+
+    if (dtag_tags.length > 32) {
+        $(".tagsTooLong").removeAttr("hidden");
+        return;
+    }
+
+    for (var i = 0; i < dtag_tags.length; i++) {
+        if (dtag_tags[i].length > 24) {
+            $(".tagsTooLong").removeAttr("hidden");
+            return;
+        }
+    }
+
+    if (url.includes("base64")) {
+        $(".nob64").removeAttr("hidden");
+        return;
+    }
+
+
     $.ajax({
         method: "PUT",
         url: "/z/submitMemeLink",
@@ -177,6 +200,9 @@ function ajaxLinkMeme() {
         success: function(res) {
             if (res.includes("200 Meme")) {
                 window.location.href = "/meme/"+res.split(",")[1];
+            } else {
+                $(".ajaxReply").html(res);
+                $(".ajaxReply").removeAttr("hidden");
             }
         }
     })
