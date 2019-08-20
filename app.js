@@ -1,3 +1,5 @@
+const ENV = "production";
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -10,24 +12,17 @@ var notFoundMw = require("./mw/404_mw");
 var errorHandler = require("./mw/ehandler");
 var Twig = require("twig");
 
-
-
-
-//connect to MongoDB
-
-let mongoUri = "";
-
-
-
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var userZoneRouter = require('./routes/user_area');
 var memeRouter = require('./routes/memez');
 
-//Twig.cache(false);
+if (ENV === "development") {
+    Twig.cache(false);
+}
 var app = express();
 
-let config = app.get('env') === 'development' ? require("./config.json") : require("./config.prod.json");
+let config = ENV === 'production' ? require("./config.prod.json") : require("./config.json");
 
 const mango_conn = mongoose.connect(config.mongoUri,
     {useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true});
@@ -79,4 +74,4 @@ app.use('/meme', memeRouter);
 app.use(notFoundMw);
 app.use(errorHandler);
 
-module.exports = {"app": app, "mango": mango_conn};
+module.exports = {"app": app, "mango": mango_conn, "env": ENV};
