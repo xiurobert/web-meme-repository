@@ -1,5 +1,6 @@
 .jumbotron {
   position: relative;
+  padding-top: 2.5%;
 }
 .jumbotron img {
   display: block;

@@ -1,5 +1,6 @@
 .jumbotron {
     position: relative;
+    padding-top: 2.5%;
     img {
         display: block;
         margin: auto;
@@ -15,6 +16,7 @@
         color: #dc3545 !important;
 
     }
+
     .danger:focus {
         background-color: #dc3545 !important;
         color: white !important;

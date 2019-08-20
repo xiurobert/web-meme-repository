@@ -8,18 +8,29 @@
 {% block body %}
     <div class="container">
         <div class="jumbotron">
-
-            {% if isCurrentUser %}
-            <div class="dropleft">
-                <i class="material-icons"
-                   data-toggle="dropdown" id="dropDown">more_horiz</i>
-
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Edit post</a>
-                    <a class="dropdown-item danger" href="/meme/{{ key }}/delete">Delete post</a>
+            <div class="row">
+                <div class="col">
+                    <a href="#" onclick="window.history.back();">&lsaquo; Back</a>
                 </div>
+
+                {% if isCurrentUser %}
+                    <div class="col">
+                        <div class="dropleft">
+                            <i class="material-icons"
+                               data-toggle="dropdown" id="dropDown">more_horiz</i>
+
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Edit post</a>
+                                <a class="dropdown-item danger" href="/meme/{{ key }}/delete">Delete post</a>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %}
+
             </div>
-            {% endif %}
+
+
 
             <h1>{{ title }}</h1>
             <p>Submitted by <i>{{ user }} {% if isCurrentUser %} (you) {% endif %}</i></p>
