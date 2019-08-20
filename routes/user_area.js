@@ -178,8 +178,15 @@ router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
                 if (tagsArr[i].length > 24) {
                     return res.status(400).send("Tag at position " + i + " ("+tagsArr[i]+")" + " is too long (max 24 chars)");
                 }
+
+                if (!tagsArr[i].match(/^[a-zA-Z0-9 ]*$/)) {
+                    return res.status(400).send("Tag at position " + i + " ("+tagsArr[i]+")" + " is not alphanumeric");
+                }
             }
         }
+
+
+
         var meme = new Meme({
             title: req.body.title,
             key: crypto.createHash("sha256")
