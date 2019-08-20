@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require("../models/user");
 var validator = require("email-validator");
+var sanitizer = require("sanitizer");
 
 router.get('/login', function(req, res, next){
     res.render('auth/login', { title: 'Login'});
@@ -29,27 +30,33 @@ router.post('/login', function(req, res, next){
 
 router.put('/signup', function(req, res, next) {
 
-    // check that email is right format
-    if (!validator.validate(req.body.email)) {
-        var err = new Error("Email format is invalid");
-        err.status = 400;
-        res.send("Email format is invalid!");
-        return next(err)
-    }
-    // check that password and confirmPassword are the same
-    if (req.body.password !== req.body.confirmPassword) {
-        var err1 = new Error("Password and confirm password do not match");
-        err1.status = 400;
-        res.send("Passwords don't match!");
-        return next(err1);
-    }
+
 
 
     if (req.body.email && req.body.username && req.body.password && req.body.confirmPassword) {
+
+        // check that email is right format
+        if (!validator.validate(req.body.email)) {
+            var err = new Error("Email format is invalid");
+            err.status = 400;
+            res.send("Email format is invalid!");
+            return next(err)
+        }
+        // check that password and confirmPassword are the same
+        if (req.body.password !== req.body.confirmPassword) {
+            var err1 = new Error("Password and confirm password do not match");
+            err1.status = 400;
+            res.send("Passwords don't match!");
+            return next(err1);
+        }
+
+        if (req.body.username.search(/^[a-zA-Z0-9-_]+$/) === -1) {
+            return res.status(400).send()
+        }
         var uData = {
             email: req.body.email,
-            username: req.body.username,
-            password: req.body.password
+            username: sanitizer.sanitize(req.body.username),
+            password: sanitizer.sanitize(req.body.password)
         };
 
         var user = new User({
