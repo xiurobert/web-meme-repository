@@ -162,6 +162,24 @@ router.put('/my_profile/update', auth_mid.auth_check, function(req, res, next) {
 
 router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
     if (req.body.title && req.body.url) {
+
+        if (req.body.title.length > 128) {
+            return res.status(400).send("Your title is too long. Max 128 chars.");
+        }
+
+        if (req.body.tags) {
+            tagsArr = req.body.tags.split(",");
+
+            if (tagsArr.length > 32) {
+                return res.status(400).send("You have too many tags ("+tagsArr.length+"). Max: 32");
+            }
+
+            for (let i = 0; i < tagsArr.length; i++) {
+                if (tagsArr[i].length > 24) {
+                    return res.status(400).send("Tag at position " + i + " ("+tagsArr[i]+")" + " is too long (max 24 chars)");
+                }
+            }
+        }
         var meme = new Meme({
             title: req.body.title,
             key: crypto.createHash("sha256")
@@ -177,8 +195,7 @@ router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
 
         meme.save(function(err, obj) {
             if (err) {
-                res.status(500).send("Error saving meme");
-                return next(err);
+                return res.status(500).send("Error saving meme");
             } else {
                 return res.status(200).end("200 Meme added (Link),"+obj.key)
             }
