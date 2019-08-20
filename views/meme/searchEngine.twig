@@ -8,6 +8,15 @@
 {% block body %}
     <div class="container">
         <div class="jumbotron">
+
+            <div class="row">
+                <div class="col">
+                    <a href="#" onclick="window.history.back();">&lsaquo; Back</a>
+                </div>
+                <div class="col ta-r">
+                    <span>Found {{ memes|length - 1 }} results in {{ searchTime }}ms</span>
+                </div>
+            </div>
             <div class="input-group">
                 <input class="form-control" type="search" placeholder="Search user-submitted memes" aria-label="Search">
                 <div class="input-group-append">

@@ -29,6 +29,14 @@
 
 }
 
+.jumbotron {
+    padding-top: 2.5%;
+}
+
+.row {
+    margin-bottom: 2.5%;
+}
+
 #noResultsMsg {
     h1 {
         font-weight: bold;
@@ -41,4 +49,9 @@
     .hint {
         font-family: Arial, sans-serif;
     }
+}
+
+
+.ta-r {
+    text-align: right;
 }
