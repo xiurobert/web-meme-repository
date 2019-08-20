@@ -11,7 +11,8 @@ var errorHandler = require("./mw/ehandler");
 
 
 //connect to MongoDB
-const mango_conn = mongoose.connect('mongodb://localhost/meme', {useNewUrlParser: true});
+const mango_conn = mongoose.connect('mongodb://localhost/meme',
+    {useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true});
 var db = mongoose.connection;
 
 
