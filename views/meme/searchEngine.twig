@@ -9,7 +9,9 @@
     <div class="container">
         <div class="jumbotron">
             <h1>MemeSearch&trade;</h1>
-            <p>Powered by pro programming skills</p>
+            <p>Powered by
+                Machine Learning&trade;, ElasticSearch&trade;, Big Data&trade;,
+                Google BigQuery&trade;, MongoDB&reg;, Node.JS&reg;, Robert's ProfessionalSearchEngineMakingSkills&reg;</p>
             <div class="row">
                 <div class="col">
                     <a href="#" onclick="window.history.back();">&lsaquo; Back</a>
@@ -32,16 +34,19 @@
                     <br>E.g. if the title is "Acoolmeme", simply searching for "meme" won't work!</p>
             </div>
 
-            {% for result in memes %}
-                <div class="meme-result">
-                    <p>
-                        <span class="meme-title"><a href="/meme/{{ result.key }}">{{ result.title }}</a></span>
-                        <span class="meme-desc">{{ result.description }}</span>
-                    </p>
+            <div class="results">
+                {% for result in memes %}
+                    <div class="meme-result">
+                        <p>
+                            <span class="meme-title"><a href="/meme/{{ result.key }}">{{ result.title }}</a></span>
+                            <span class="meme-desc">{{ result.description }}</span>
+                        </p>
 
-                    <img src="{{ result.mediaLink }}" width="10%" class="meme-img">
-                </div>
-            {% endfor %}
+                        <img src="{{ result.mediaLink }}" width="10%" class="meme-img">
+                    </div>
+                {% endfor %}
+            </div>
+
         </div>
     </div>
 {% endblock %}

@@ -28,6 +28,9 @@
 .jumbotron {
   padding-top: 2.5%;
 }
+.jumbotron .results {
+  margin-top: 2.5%;
+}
 
 .row {
   margin-bottom: 2.5%;
