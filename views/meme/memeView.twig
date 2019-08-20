@@ -8,6 +8,8 @@
 {% block body %}
     <div class="container">
         <div class="jumbotron">
+
+            {% if isCurrentUser %}
             <div class="dropleft">
                 <i class="material-icons"
                    data-toggle="dropdown" id="dropDown">more_horiz</i>
@@ -17,9 +19,10 @@
                     <a class="dropdown-item danger" href="/meme/{{ key }}/delete">Delete post</a>
                 </div>
             </div>
+            {% endif %}
 
             <h1>{{ title }}</h1>
-            <p><i>Submitted by {{ user }} {% if isCurrentUser%} (you) {% endif %}</i></p>
+            <p>Submitted by <i>{{ user }} {% if isCurrentUser %} (you) {% endif %}</i></p>
             <p>Tags</p>
             <div class="dtag-input-tags">
                 {% for tag in tags %}

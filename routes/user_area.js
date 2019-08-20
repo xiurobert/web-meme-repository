@@ -65,6 +65,18 @@ router.get('/my_profile', auth_mid.auth_check, function(req, res, next) {
 
 });
 
+router.get('/my_submissions', auth_mid.auth_check, function(req, res, next) {
+    Meme.find({
+        uId: req.session.userId
+    }, function(err, obj) {
+        if (err) {
+            return next(err);
+        }
+        res.render('user_zone/my_submissions', {memes: obj});
+    });
+
+});
+
 router.put('/my_profile/update', auth_mid.auth_check, function(req, res, next) {
 
     if (req.body.email && req.body.username) {
