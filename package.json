@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "base64url": "^3.0.1",
     "bcrypt": "^3.0.6",
     "connect-mongo": "^3.0.0",
     "cookie-parser": "~1.4.4",

@@ -6,6 +6,7 @@ var auth_mid = require("../mw/requires_login");
 var crypto = require("crypto");
 let validate = require("email-validator");
 var sanitizer = require("sanitizer");
+var base64url = require('base64url');
 
 //var multer = require('multer');
 var date = Date.now();
@@ -196,9 +197,7 @@ router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
 
         var meme = new Meme({
             title: sanitizer.sanitize(req.body.title),
-            key: crypto.createHash("sha256")
-                .update(req.body.title + date + req.body.url)
-                .digest("base64").substring(0, 6), // create 6 char unique key for each uploaded meme
+            key: base64url(req.body.title + date + req.body.url + Math.random()).substring(0, 6), // create 6 char unique key for each uploaded meme
             uId: req.session.userId,
             ...(req.body.tags && {keywords: tagsArr}),
             ...(req.body.desc && {description: sanitizer.sanitize(req.body.desc)}),
