@@ -182,7 +182,7 @@ function ajaxLinkMeme() {
         }
     }
 
-    if (url.includes("base64")) {
+    if ($("#memeLink").val().includes("base64")) {
         $(".nob64").removeAttr("hidden");
         return;
     }
@@ -204,6 +204,10 @@ function ajaxLinkMeme() {
                 $(".ajaxReply").html(res);
                 $(".ajaxReply").removeAttr("hidden");
             }
+        },
+        error: function(xhr, txt, et) {
+            $(".ajaxReply").html(xhr.responseText);
+            $(".ajaxReply").removeAttr("hidden");
         }
     })
 }
