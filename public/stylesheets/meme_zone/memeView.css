@@ -1,0 +1,22 @@
+.jumbotron {
+  position: relative;
+}
+.jumbotron img {
+  display: block;
+  margin: auto;
+}
+.jumbotron #dropDown {
+  position: absolute;
+  right: 2.5%;
+  top: 1%;
+  cursor: pointer;
+}
+.jumbotron .danger {
+  color: #dc3545 !important;
+}
+.jumbotron .danger:focus {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+/*# sourceMappingURL=memeView.css.map */

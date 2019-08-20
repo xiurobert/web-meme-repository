@@ -4,8 +4,7 @@ var user = require("../models/user");
 var Meme = require("../models/memes");
 var auth_mid = require("../mw/requires_login");
 var crypto = require("crypto");
-
-var main = require("../app");
+let validate = require("email-validator");
 
 //var multer = require('multer');
 var date = Date.now();
@@ -64,6 +63,24 @@ router.get('/my_profile', auth_mid.auth_check, function(req, res, next) {
             });
     });
 
+});
+
+router.put('/my_profile/update', auth_mid.auth_check, function(req, res, next) {
+
+    if (req.body.email && req.body.username) {
+
+        if (!validate.validate(req.body.email)) {
+            return res.status(400).end("Email is invalid!");
+        }
+
+        user.findByIdAndUpdate(req.session.userId,
+            {email: req.body.email, username: req.body.username}).then(function(usr) {
+                return res.status(200).send("update successful");
+        }).catch(function(err) {
+            res.status = 500;
+            return res.send("Could not get user profile")
+        })
+    }
 });
 
 // router.put('/submitMeme/:type', auth_mid.auth_check, function (req, res, next) {

@@ -1,0 +1,5 @@
+<div class="alert alert-{{ alert_type }} alert-dismissible
+ fade show {% for class in alert_classes %}{{ class }} {% endfor %}"
+     role="alert" id="{{ alert_id }}">
+    {{ alert_content }}
+</div>

@@ -3,6 +3,9 @@ orig_username = $("#username").val();
 
 $(document).ready(function() {
     $("#editProfile").hide();
+    $("#successfulUpdate").hide();
+    $("#dbError").hide();
+    $("#emailError").hide();
 });
 function editEmail() {
     $("#email").prop('disabled', function(i, v) { return !v; });
@@ -22,14 +25,20 @@ $(document).on('keyup', function () {
 
 $("#editProfile").click(function() {
     $.ajax({
-        url: "/z/my_profile/edit",
+        url: "/z/my_profile/update",
         method: "PUT",
         data: {
             email: $("#email").val(),
             username: $("#username").val()
         },
         success: function(res) {
-
+            if (res.includes("update successful")) {
+                $("#successfulUpdate").show();
+            } else if (res.includes("Email is invalid!")) {
+                $("#emailError").show();
+            } else {
+                $("#dbError").show();
+            }
         }
     })
 });

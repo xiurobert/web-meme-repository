@@ -14,6 +14,18 @@
             <h1>My profile</h1>
 {#            TODO: Allow editing of profile#}
 
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="dbError">
+                <strong>Sowwy!</strong> Something went wrong updating your profile!
+            </div>
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="emailError">
+                <strong>Hey!</strong> That email format is invalid!
+            </div>
+
+            <div class="alert alert-success alert-dismissible fade show" role="alert" id="successfulUpdate">
+                <strong>Yay!</strong> Updated your profile successfully!
+            </div>
+
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="material-icons">email</i></span>
@@ -37,8 +49,7 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" type="submit" id="editProfile"
-                    onclick="editProfile()">Save changes</button>
+            <button class="btn btn-primary" type="submit" id="editProfile">Save changes</button>
 
         </div>
     </div>
