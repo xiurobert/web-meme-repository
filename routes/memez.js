@@ -98,4 +98,30 @@ router.get('/:memeId/update', auth_mid.auth_check, function(req, res, next) {
 
 });
 
+router.get("/search", function(req, res, next) {
+   if (!req.query.q) {
+       res.status = 400;
+       return next();
+   }
+
+   Meme.find(
+       {
+           $or: [
+               {$text: {$search: new RegExp("/" + req.query.q + "/")}},
+               {keywords: new RegExp("/" + req.query.q + "/")}
+           ]
+
+       }
+   )
+       .limit(25)
+       .lean()
+       .then(function(docs) {
+            res.render("meme/searchEngine", {memes: docs, logged_in: (req.session && req.session.userId)})
+       })
+       .catch(function(err) {
+           res.status = 500;
+           return next(err);
+       })
+});
+
 module.exports = router;

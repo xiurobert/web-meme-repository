@@ -4,7 +4,7 @@ function eHandler(err, req, res, next) {
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
     // render the error page
-    res.status(err.status || 500);
+    res.status = err.status || 500;
     var authed = false;
     if (req.session && req.session.userId) {
         authed = true;
