@@ -1,0 +1,28 @@
+.meme-result {
+  border: 3px solid black;
+  padding: 2.5%;
+  border-radius: 20px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5%;
+  font-family: Arial, sans-serif;
+}
+.meme-result span {
+  text-align: left;
+  display: block;
+  flex-basis: 100%;
+}
+.meme-result img {
+  margin-left: auto;
+  border-radius: 15px;
+}
+.meme-result .meme-title {
+  font-size: 150%;
+  font-weight: bold;
+}
+.meme-result .meme-desc {
+  margin-top: 1%;
+}
+
+/*# sourceMappingURL=searchEngine.css.map */
