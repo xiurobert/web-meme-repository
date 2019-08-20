@@ -16,7 +16,7 @@ let memeSchema = new mongoose.Schema({
         trim: true
     },
     keywords: {
-        type: Array
+        type: [String]
     },
     description: {
         type: String
@@ -32,6 +32,8 @@ let memeSchema = new mongoose.Schema({
         type: String
     }
 });
+
+memeSchema.index({"$**": "text"});
 
 let Meme = mongoose.model("Meme", memeSchema);
 module.exports = Meme;
