@@ -137,7 +137,7 @@ router.get("/search", function(req, res, next) {
 });
 
 router.get("/random", function(req, res, next) {
-   Meme.count().exec(function(err, count) {
+   Meme.countDocuments().exec(function(err, count) {
        if (err) {
            res.status = 500;
            return next(err);
@@ -153,6 +153,39 @@ router.get("/random", function(req, res, next) {
                return res.redirect("/meme/" + doc.key);
            })
    })
+});
+
+router.get("/browse/:page", function (req, res, next) {
+    if (isNaN(req.params.page)) {
+        res.status = 400;
+        return res.end("Page must be a number")
+    }
+
+    let page = req.params.page;
+    if (page < 1 ){
+        res.status = 400;
+        return res.end("Page number must be greater than 1");
+    }
+
+    Meme.countDocuments().exec(function(err, docCount) {
+        if (25 * (page - 1)) {
+            return res.status(400).end("Page number is too high!");
+        }
+    });
+
+
+    Meme.find()
+        .skip(25 * (page - 1))
+        .limit(25)
+        .lean()
+        .then(function (docs) {
+            docs.pop();
+            return res.render("meme/browseMemes", {memes: docs, page: page})
+        })
+        .catch(function(err) {
+            res.status = 500;
+            return next(err);
+        })
 });
 
 module.exports = router;
