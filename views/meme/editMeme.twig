@@ -33,6 +33,10 @@
                 </div>
                 <textarea class="form-control" placeholder="{{ meme.description }}" id="description">{{ meme.description }}</textarea>
             </div>
+
+            <button class="btn btn-primary" type="submit" id="submitMeme">Submit meme!</button>
+
+            <div class="alert alert-danger alert-dismissible fade show ajaxReply" role="alert" hidden>
         </div>
     </div>
 {% endblock %}
@@ -50,7 +54,41 @@
                 '<span class="dtag-deltag">&nbsp; &times;</span>' +
                 '</span>');
             {% endfor %}
-        });
 
+            $("#submitMeme").hide();
+
+            var initialTitle = '{{ meme.title }}';
+            var initialTags = dtag_tags;
+            var initialDescription = '{{ meme.description }}';
+            $(document).on('keypress', function(e) {
+                if ($("#title").val() !== initialTitle
+                    || dtag_tags !== initialTags
+                    || $("#description").val() !== initialDescription) {
+                    $("#submitMeme").show();
+                } else {
+                    $("#submitMeme").hide();
+                }
+            });
+
+            $("#submitMeme").click(function() {
+                $.ajax({
+                    url: "/meme/{{ meme.key }}/update",
+                    method: "PUT",
+                    data: {
+                        newTitle: $("#title").val(),
+                        newTags: dtag_tags.join(),
+                        newDescription: $("#description").val()
+                    },
+                    success: function(res) {
+                        console.log(res);
+                        debugger;
+                        window.location.href = "/meme/{{ meme.key }}"
+                    },
+                    error: function(xhr) {
+                        $(".ajaxReply").html(xhr.responseText);
+                    }
+                });
+            })
+        });
     </script>
 {% endblock %}

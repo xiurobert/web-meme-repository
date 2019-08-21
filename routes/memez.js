@@ -188,4 +188,54 @@ router.get("/browse/:page", function (req, res, next) {
         })
 });
 
+router.put('/meme/:id/update', function(req, res, next) {
+    Meme.findOne({key: req.params.id})
+        .lean()
+        .then(function(meme) {
+            if (!meme) {
+                return res.status(400).end("No meme with that key found");
+            }
+
+            if (req.body.newTitle && req.body.newTags && req.body.newDescription) {
+                if (req.body.newTitle.length > 128) {
+                    return res.status(400).end("Title is too long! Max 128 characters")
+                }
+
+                let title = sanitizer.sanitize(req.body.newTitle);
+                let description = sanitizer.sanitize(req.body.newDescription);
+                let updatedTags = req.body.newTags.split(',');
+
+                if (req.body.newTags.length > 32) {
+                    for (let i = 0; i < updatedTags.length; i++) {
+                        if (updatedTags[i].length > 24) {
+                            return res.status(400).send("Tag at position " + i + " ("+tagsArr[i]+")" + " is too long (max 24 chars)");
+                        }
+
+                        if (!updatedTags[i].match(/^[a-zA-Z0-9 ]*$/)) {
+                            return res.status(400).send("Tag at position " + i + " ("+tagsArr[i]+")" + " is not alphanumeric");
+                        }
+
+                        updatedTags[i] = sanitizer.sanitize(tagsArr[i]);
+                    }
+                }
+
+                meme.title = title;
+                meme.description = description;
+                meme.keywords = updatedTags;
+
+                meme.save()
+                    .then(function() {
+                        return res.status(200).end("Successfully updated meme!");
+                    })
+                    .catch(function(err) {
+                        return res.status(500).end("DB Error while updating meme")
+                    })
+
+
+            } else {
+                return res.status(400).end("Does not contain all required fields");
+            }
+        })
+});
+
 module.exports = router;

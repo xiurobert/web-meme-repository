@@ -173,8 +173,8 @@ router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
         if (req.body.tags) {
             tagsArr = req.body.tags.split(",");
 
-            if (tagsArr.length > 32) {
-                return res.status(400).send("You have too many tags ("+tagsArr.length+"). Max: 32");
+            if (tagsArr.length > 16) {
+                return res.status(400).send("You have too many tags ("+tagsArr.length+"). Max: 16");
             }
 
             for (let i = 0; i < tagsArr.length; i++) {
