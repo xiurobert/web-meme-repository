@@ -26,6 +26,11 @@
   margin-top: 1%;
 }
 
+.stats-for-nerds {
+  font-family: "Meslo LG S", "Menlo", "Lucida Console", "Courier New", monospace;
+  font-size: 70%;
+}
+
 .jumbotron {
   padding-top: 2.5%;
 }
