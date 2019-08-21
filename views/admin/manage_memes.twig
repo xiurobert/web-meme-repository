@@ -1,6 +1,8 @@
 {% extends "../tmpl/layout.twig" %}
 {% set title = "Manage Memes | Admin Panel" %}
 {% set logged_in = true %}
+{% set is_admin = true %}
+{% set nav_selected = "admin" %}
 
 {% block head %}
     <link rel="stylesheet" href="/public/stylesheets/admin.css">

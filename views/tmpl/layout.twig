@@ -31,7 +31,7 @@
                 <li class="nav-item {% if nav_selected == "index" %}active{% endif %}"><a class="nav-link" href="/home">Home</a></li>
                 <li class="nav-item {% if nav_selected == "about" %}active{% endif %}"><a class="nav-link" href="/about">About</a></li>
 
-                {% if admin_user %}
+                {% if is_admin %}
                 <li class="nav-item dropdown {% if nav_selected == "admin" %}active{% endif %}">
                     <a class="nav-link dropdown-toggle" href="#" id="myProfileDropdown" role="button" data-toggle="dropdown">
                         Admin

@@ -1,0 +1,60 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.jumbotron .row {
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+.jumbotron .col {
+  text-align: center;
+}
+.jumbotron .col .manage-memes-icon {
+  font-size: 500%;
+  position: relative;
+  top: -5px;
+  transition: top ease 0.5s;
+}
+.jumbotron .col .manage-memes-icon:hover {
+  top: -15px;
+  cursor: pointer;
+  color: #007bff;
+}
+.jumbotron .col .user-icon {
+  font-size: 500%;
+  position: relative;
+  top: 5px;
+  transition: top ease 0.5s;
+}
+.jumbotron .col .user-icon:hover {
+  top: -5px;
+  cursor: pointer;
+  color: #007bff;
+}
+.jumbotron .col .fa-terminal {
+  font-size: 500%;
+  position: relative;
+  top: -10px;
+  transition: top ease 0.5s;
+}
+.jumbotron .col .fa-terminal:hover {
+  top: -20px;
+  cursor: pointer;
+  color: #007bff;
+}
+.jumbotron .col .fa-exclamation-circle {
+  font-size: 500%;
+  position: relative;
+  top: -5px;
+  transition: top ease 0.5s;
+}
+.jumbotron .col .fa-exclamation-circle:hover {
+  top: -15px;
+  cursor: pointer;
+  color: #007bff;
+}
+.jumbotron .col span {
+  display: block;
+}
+
+/*# sourceMappingURL=admin_zone.css.map */
