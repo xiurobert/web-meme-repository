@@ -19,7 +19,6 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Unique Key</th>
                     <th scope="col">Title</th>
                     <th scope="col">Image URL</th>
                     <th scope="col">Tags</th>
@@ -29,8 +28,7 @@
                 {% for meme in memes %}
                     <tr>
                         <th scope="row">{{ loop.index }}</th>
-                        <td><a href="/meme/{{ meme.key }}">{{ meme.key }}</a></td>
-                        <td>{{ meme.title }}</td>
+                        <td><a href="/meme/{{ meme.key }}">{{ meme.title }}</a></td>
                         <td><img src="{{ meme.mediaLink }}" width="30%"></td>
                         <td>
                             <div class="dtag-input-tags">
