@@ -64,10 +64,10 @@
 <footer class="footer fixed-bottom bg-dark">
     <div class="container">
         <span class="copyright">
-            MEANMeStack 1.0.4 Copyright &copy; xiurobert 2019. MIT Licensed <i class="fab fa-github"></i>
+            MEANMeStack 1.0.4 <i class="fab fa-github"></i>
         </span>
 
-        <span class="stats"> Page generated in <span id="loadTime"></span>ms.</span>
+        <span class="stats"> Page generated in <span class="loadTime"></span>ms.</span>
     </div>
 </footer>
 
@@ -77,11 +77,6 @@
 <script src="/public/javascripts/layout.js"></script>
 {% block js %}
 
-    <script>
-        $(document).ready(function() {
-            $(".footer").hide();
-        })
-    </script>
 {% endblock %}
 </body>
 </html>

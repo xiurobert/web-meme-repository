@@ -1,4 +1,4 @@
-const ENV = "production";
+const ENV = "development";
 
 var express = require('express');
 var path = require('path');
@@ -17,12 +17,19 @@ var authRouter = require('./routes/auth');
 var userZoneRouter = require('./routes/user_area');
 var memeRouter = require('./routes/memez');
 
-if (ENV === "development") {
+
+var app = express();
+if (ENV === "development" || app.get('env') === 'development') {
     Twig.cache(false);
 }
-var app = express();
+let config;
+if (ENV === 'production' || app.get('env') === 'production') {
+    config = require("./config.prod.json");
+} else {
+    config = require("./config.json");
+}
 
-let config = ENV === 'production' ? require("./config.prod.json") : require("./config.json");
+console.log("Connecting to DB: " + config.mongoUri);
 
 const mango_conn = mongoose.connect(config.mongoUri,
     {useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true});

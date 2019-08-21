@@ -23,6 +23,8 @@
             </div>
         </div>
 
+        {% if memes|length > 0 %}
+
         <div class="jumbotron">
             <h1>Manage my memes</h1>
             <p>Manage your memes, edit or delete the submissions</p>
@@ -37,6 +39,8 @@
             </div>
 
         </div>
+
+        {% endif %}
     </div>
 {% endblock %}
 

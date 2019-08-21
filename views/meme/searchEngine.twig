@@ -20,7 +20,9 @@
                     <a href="#" onclick="window.history.back();">&lsaquo; Back</a>
                 </div>
                 <div class="col ta-r">
-                    <span>Found {{ memes|length }} meme{% if memes|length != 1  %}s{% endif %} in {{ searchTime }}ms</span>
+                    <span>Query time: {{ memes|length }} result{% if memes|length != 1  %}s{% endif %}: {{ searchTime }}ms</span>
+                    |
+                    <span>DOM load time: <span class="loadTime"></span>ms</span>
                 </div>
             </div>
             <div class="input-group">

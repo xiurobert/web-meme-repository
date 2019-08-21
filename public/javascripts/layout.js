@@ -9,5 +9,5 @@ $(document).ready(function() {
 });
 window.onload = function() {
     var loadTime = window.performance.timing.domContentLoadedEventEnd- window.performance.timing.navigationStart;
-    $("#loadTime").html(loadTime);
+    $(".loadTime").html(loadTime);
 };

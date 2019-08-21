@@ -18,7 +18,7 @@ var UserSchema = new mongoose.Schema({
         required: true
     },
     adminLevel: {
-        type: String
+        type: Number
     }
 });
 /**
