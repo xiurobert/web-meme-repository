@@ -136,4 +136,23 @@ router.get("/search", function(req, res, next) {
         })
 });
 
+router.get("/random", function(req, res, next) {
+   Meme.count().exec(function(err, count) {
+       if (err) {
+           res.status = 500;
+           return next(err);
+       }
+       Meme.findOne()
+           .skip(Math.floor(Math.random() * count))
+           .exec(function(err, doc) {
+               if (err) {
+                   res.status = 500;
+                   return next(err);
+               }
+
+               return res.redirect("/meme/" + doc.key);
+           })
+   })
+});
+
 module.exports = router;
