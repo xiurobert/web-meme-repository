@@ -1,26 +1,29 @@
-const ENV = "development";
+const ENV = "DEPRECATED";
 
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var sassMiddleware = require('node-sass-middleware');
-var mongoose = require('mongoose');
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-var notFoundMw = require("./mw/404_mw");
-var errorHandler = require("./mw/ehandler");
-var Twig = require("twig");
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+let sassMiddleware = require('node-sass-middleware');
+let mongoose = require('mongoose');
+let session = require('express-session');
+let MongoStore = require('connect-mongo')(session);
+let Twig = require("twig");
 
-var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
-var userZoneRouter = require('./routes/user_area');
-var memeRouter = require('./routes/memez');
+let notFoundMw = require("./mw/404_mw");
+let errorHandler = require("./mw/ehandler");
 
 
-var app = express();
+let indexRouter = require('./routes/index');
+let authRouter = require('./routes/auth');
+let userZoneRouter = require('./routes/user_area');
+let memeRouter = require('./routes/memez');
+
+
+let app = express();
 if (ENV === "development" || app.get('env') === 'development') {
     Twig.cache(false);
+    // disable caching in twig on dev
 }
 let config;
 if (ENV === 'production' || app.get('env') === 'production') {
@@ -29,11 +32,10 @@ if (ENV === 'production' || app.get('env') === 'production') {
     config = require("./config.json");
 }
 
-console.log("Connecting to DB: " + config.mongoUri);
 
 const mango_conn = mongoose.connect(config.mongoUri,
     {useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true});
-var db = mongoose.connection;
+let db = mongoose.connection;
 
 //handle mongo error
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -44,7 +46,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
 
-// middleware setup
+// application level middleware setup
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
