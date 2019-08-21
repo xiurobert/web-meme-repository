@@ -39,6 +39,13 @@ $(document).ready(function() {
             if (val.includes(" ")) {
                 return;
             }
+
+            // Disallow tags from being too long
+            if (val.length > 24 || dtag_tags.length > 16) {
+                alert("Tag too long or too many tags!");
+                return;
+            }
+
             $(".dtag-input-tags").append(
                 '<span class="dtag-input-tag">' +
                     '<span class="dtag-val">' + val + '</span>' +
