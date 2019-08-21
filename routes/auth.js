@@ -30,9 +30,6 @@ router.post('/login', function(req, res, next){
 
 router.put('/signup', function(req, res, next) {
 
-
-
-
     if (req.body.email && req.body.username && req.body.password && req.body.confirmPassword) {
 
         // check that email is right format
@@ -50,8 +47,13 @@ router.put('/signup', function(req, res, next) {
             return next(err1);
         }
 
+        if (req.body.username.length > 64) {
+            return res.status(400).send("Maximum length of username is 64 characters");
+        }
+
         if (req.body.username.search(/^[a-zA-Z0-9-_]+$/) === -1) {
-            return res.status(400).send()
+            return res.status(400)
+                .send("Username can only contain alphanumerical characters, _ or - ");
         }
         var uData = {
             email: req.body.email,

@@ -18,9 +18,9 @@ lol?
 
 ## TODO
 - [ ] Admin Panel
-- [ ] Limit usernames to alphanumerical, underscores and dash, 64 chars max
-- [ ] Limit tags to max chars 64
-- [ ] Limit meme title to max chars 256
+- [x] Limit usernames to alphanumerical, underscores and dash, 64 chars max
+- [x] Limit tags to max chars 64
+- [x] Limit meme title to max chars 128
 - [ ] Browse page
 - [ ] Random meme
 - [ ] Add search by user
