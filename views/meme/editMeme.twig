@@ -1,0 +1,56 @@
+{% extends "../tmpl/layout.twig" %}
+{% set title = "Edit meme" %}
+{% set logged_in = true %}
+
+{% block head %}
+    <link rel="stylesheet" href="/public/stylesheets/tag_input.css">
+    <link rel="stylesheet" href="/public/stylesheets/meme_zone/editMeme.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Edit your meme</h1>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Title</span>
+                </div>
+                <input type="text" class="form-control" placeholder="{{ meme.title }}"
+                       id="title" value="{{ meme.title }}">
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Tags</span>
+                </div>
+                <input type="text" class="form-control tag-input" placeholder="Tags" id="tags">
+
+            </div>
+
+            <div class="input-group txta">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Description</span>
+                </div>
+                <textarea class="form-control" placeholder="{{ meme.description }}" id="description">{{ meme.description }}</textarea>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="/public/javascripts/tag_input.js"></script>
+    <script>
+        $(document).ready(function() {
+            {% for tag in meme.keywords %}
+            dtag_tags.push('{{ tag }}');
+            $(".dtag-input-tags").append(
+                '<span class="dtag-input-tag">' +
+                '<span class="dtag-val">{{ tag }}</span>' +
+                '<span class="dtag-deltag">&nbsp; &times;</span>' +
+                '</span>');
+            {% endfor %}
+        });
+
+    </script>
+{% endblock %}

@@ -9,6 +9,7 @@ let mongoose = require('mongoose');
 let session = require('express-session');
 let MongoStore = require('connect-mongo')(session);
 let Twig = require("twig");
+let fs = require("fs");
 
 let notFoundMw = require("./mw/404_mw");
 let errorHandler = require("./mw/ehandler");
@@ -48,7 +49,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
 
 // application level middleware setup
-app.use(logger('dev'));
+app.use(logger('dev', {stream: fs.createWriteStream('./access.log', {flags: 'a'})}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
