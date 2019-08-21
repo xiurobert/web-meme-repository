@@ -1,0 +1,39 @@
+{% extends "../tmpl/layout.twig" %}
+{% set title = "Admin Dashboard" %}
+{% set logged_in = true %}
+
+{% block head %}
+    <link rel="stylesheet" href="/public/stylesheets/admin_zone.css">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Admin Panel</h1>
+            <div class="row">
+                <div class="col">
+                    <i class="material-icons manage-memes-icon">build</i>
+                    <span class="label">Manage Memes</span>
+                </div>
+
+                <div class="col">
+                    <i class="material-icons user-icon">person</i>
+                    <span class="label">Manage Users</span>
+                </div>
+
+                <div class="col">
+                    <i class="fas fa-terminal"></i>
+                    <span class="label">App Debug Console</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <i class="fas fa-exclamation-circle"
+                       onclick="window.location.href = 'https://github.com/xiurobert/web-meme-repository/issues/new'"></i>
+                    <span class="label">Complain to the developer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

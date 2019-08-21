@@ -1,0 +1,65 @@
+@mixin icon($topOffset) {
+    font-size: 500%;
+    position: relative;
+    top: $topOffset;
+    transition: top ease 0.5s;
+}
+
+@mixin iconHover($endPos) {
+    top: $endPos;
+    cursor: pointer;
+    color: #007bff;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+.jumbotron {
+
+    .row {
+        margin-top: 2.5%;
+        margin-bottom: 2.5%;
+    }
+
+
+    .col {
+        text-align: center;
+
+        .manage-memes-icon {
+            @include icon(-5px);
+
+            &:hover {
+                @include iconHover(-15px);
+            }
+        }
+
+        .user-icon {
+            @include icon(5px);
+            &:hover {
+                @include iconHover(-5px);
+            }
+        }
+
+        .fa-terminal {
+            @include icon(-10px);
+
+            &:hover {
+                @include iconHover(-20px)
+            }
+        }
+
+        .fa-exclamation-circle {
+            @include icon(-5px);
+
+            &:hover {
+                @include iconHover(-15px);
+            }
+        }
+
+
+        span {
+            display: block;
+        }
+    }
+
+}
