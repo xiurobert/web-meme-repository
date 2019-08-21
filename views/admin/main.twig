@@ -15,12 +15,14 @@
             <h1>Admin Panel</h1>
             <div class="row">
                 <div class="col">
-                    <i class="material-icons manage-memes-icon">build</i>
+                    <i class="material-icons manage-memes-icon"
+                       onclick="window.location.href = 'manage/memes'">build</i>
                     <span class="label">Manage Memes</span>
                 </div>
 
                 <div class="col">
-                    <i class="material-icons user-icon">person</i>
+                    <i class="material-icons user-icon"
+                       onclick="window.location.href = 'manage/users'">person</i>
                     <span class="label">Manage Users</span>
                 </div>
 
@@ -31,8 +33,15 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <i class="fas fa-exclamation-circle"
-                       onclick="window.location.href = 'https://github.com/xiurobert/web-meme-repository/issues/new'"></i>
+                    <i class="material-icons settings-icon">settings</i>
+                    <span class="label">Configure Application</span>
+                </div>
+
+                <div class="col">
+                    <i class="material-icons"
+                       onclick="window.location.href = 'https://github.com/xiurobert/web-meme-repository/issues/new'">
+                        bug_report
+                    </i>
                     <span class="label">Complain to the developer</span>
                 </div>
             </div>

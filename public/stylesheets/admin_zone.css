@@ -9,13 +9,13 @@ body {
 .jumbotron .col {
   text-align: center;
 }
-.jumbotron .col .manage-memes-icon {
+.jumbotron .col .material-icons {
   font-size: 500%;
   position: relative;
   top: -5px;
   transition: top ease 0.5s;
 }
-.jumbotron .col .manage-memes-icon:hover {
+.jumbotron .col .material-icons:hover {
   top: -15px;
   cursor: pointer;
   color: #007bff;

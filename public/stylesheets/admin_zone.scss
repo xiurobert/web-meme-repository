@@ -25,7 +25,7 @@ body {
     .col {
         text-align: center;
 
-        .manage-memes-icon {
+        .material-icons {
             @include icon(-5px);
 
             &:hover {
