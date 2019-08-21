@@ -6,6 +6,9 @@
   display: block;
   margin: auto;
 }
+.jumbotron img:hover {
+  cursor: pointer;
+}
 .jumbotron #dropDown {
   position: absolute;
   right: 2.5%;
@@ -18,6 +21,10 @@
 .jumbotron .danger:focus {
   background-color: #dc3545 !important;
   color: white !important;
+}
+
+.modal-body img {
+  transform: scale(1.5);
 }
 
 /*# sourceMappingURL=memeView.css.map */
