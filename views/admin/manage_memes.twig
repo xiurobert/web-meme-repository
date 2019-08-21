@@ -5,7 +5,7 @@
 {% set nav_selected = "admin" %}
 
 {% block head %}
-    <link rel="stylesheet" href="/public/stylesheets/admin.css">
+    <link rel="stylesheet" href="/public/stylesheets/admin_zone/admin.css">
     <link rel="stylesheet" href="/public/stylesheets/tag_input.css">
 {% endblock %}
 
@@ -21,6 +21,7 @@
                         <th scope="col">Title</th>
                         <th scope="col">Image URL</th>
                         <th scope="col">Tags</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,7 +39,10 @@
                                     </span>
                                 {% endfor %}
                             </div>
-
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm">Edit</button>
+                            <button class="btn btn-outline-danger btn-sm">Delete</button>
                         </td>
                     </tr>
                 {% endfor %}
