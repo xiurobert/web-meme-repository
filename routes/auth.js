@@ -16,9 +16,7 @@ router.post('/login', function(req, res, next){
     if (req.body.username && req.body.password) {
         User.authenticate(req.body.username, req.body.password, function (error, user) {
             if (error || !user) {
-                var err = new Error('Wrong username/email or password.');
-                err.status = 401;
-                return res.send("Wrong username/email or password wrong");
+                return res.status(401).send("Wrong username/email or password wrong");
             } else {
                 req.session.userId = user._id;
                 return res.send("Authenticated")
