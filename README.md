@@ -13,14 +13,15 @@ lol?
 6. It works
 
 ### Docker
-~~When I stop being lazy~~ Coming soon!
+~~When I stop being lazy~~ ~~Coming soon!~~
+Please pull request me if you create a Dockerfile thnx
 
 
 ## TODO
-- [ ] Admin Panel
+- [ ] Admin Panel (Half done)
 - [x] Limit usernames to alphanumerical, underscores and dash, 64 chars max
 - [x] Limit tags to max chars 64
 - [x] Limit meme title to max chars 128
-- [ ] Browse page
-- [ ] Random meme
+- [x] Browse page
+- [x] Random meme
 - [ ] Add search by user
