@@ -8,16 +8,15 @@
 {% block body %}
     {% include '../tmpl/error_modal.twig' with
         {
+            'modal_id': 'ajaxError',
+            'modal_title': 'Backend response',
+            'modal_content': "Bruh the passwords don't actually match fix pls"
+        } %}
+    {% include '../tmpl/error_modal.twig' with
+        {
             'modal_id': 'somethingNoMatch',
             'modal_title': 'bruh moment',
             'modal_content': "Bruh the passwords don't actually match fix pls"
-        } %}
-
-    {% include '../tmpl/error_modal.twig' with
-        {
-            'modal_id': 'duplicateUser',
-            'modal_title': 'BRUHHH',
-            'modal_content': "dat user already exists. Please use another username"
         } %}
 
     {% include '../tmpl/error_modal.twig' with

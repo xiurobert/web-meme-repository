@@ -1,4 +1,14 @@
 function execSignup() {
+    var submitBtn = $("input[type='submit']");
+
+    submitBtn.attr("disabled", true);
+    submitBtn.val("Signing up...");
+
+    function revertSubmitBtn() {
+        submitBtn.removeAttr("disabled");
+        submitBtn.val("Sign up");
+    }
+
     var email = $("#email").val();
     var username = $("#username").val();
     var pw = $("#password").val();
@@ -6,16 +16,19 @@ function execSignup() {
 
     if (!email || !username || !pw || !confirmPw) {
         $("#inputsBlank").modal();
+        revertSubmitBtn();
         return;
     }
 
     if (!validateEmail(email)) {
         $("#emailError").modal();
+        revertSubmitBtn();
         return;
     }
 
     if (pw !== confirmPw) {
         $("#somethingNoMatch").modal();
+        revertSubmitBtn();
         return;
     }
 
@@ -29,14 +42,15 @@ function execSignup() {
             confirmPassword: confirmPw
         },
         success: function(result) {
-            if (result.includes("already exists")) {
-                $("#duplicateUser").modal();
-            } else if (result.includes("match")) {
-                $("#somethingNoMatch").modal();
-            } else {
+            if (result.includes("Successfully")) {
                 $(".alert").removeAttr("hidden");
                 window.location.href = "/z/dash";
             }
+        },
+        error: function(xhr) {
+            revertSubmitBtn();
+            $("#ajaxError .modal-body").html(xhr.responseText);
+            $("#ajaxError").modal();
         }
     })
 
