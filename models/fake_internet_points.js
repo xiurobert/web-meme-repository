@@ -2,7 +2,6 @@ let mongoose = require('mongoose');
 let karmaSchema = new mongoose.Schema({
     memeKey: {
         type: String,
-        unique: true,
         required: true,
         trim: true
     },
