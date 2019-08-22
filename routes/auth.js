@@ -19,7 +19,7 @@ router.post('/login', function(req, res, next){
                 return res.status(401).send("Wrong username/email or password wrong");
             } else {
                 req.session.userId = user._id;
-                return res.send("Authenticated")
+                return res.status(200).send("Authenticated")
             }
         });
     }
@@ -32,17 +32,11 @@ router.put('/signup', function(req, res, next) {
 
         // check that email is right format
         if (!validator.validate(req.body.email)) {
-            var err = new Error("Email format is invalid");
-            err.status = 400;
-            res.send("Email format is invalid!");
-            return next(err)
+            return res.status(400).send("Email format is invalid!");
         }
         // check that password and confirmPassword are the same
         if (req.body.password !== req.body.confirmPassword) {
-            var err1 = new Error("Password and confirm password do not match");
-            err1.status = 400;
-            res.send("Passwords don't match!");
-            return next(err1);
+            return res.status(400).send("Passwords don't match!");
         }
 
         if (req.body.username.length > 64) {
@@ -66,11 +60,12 @@ router.put('/signup', function(req, res, next) {
         });
         user.save(function (err, obj) {
             if (err) {
-
                 if (err.message.includes("duplicate")) {
                     return res.status(400).send("That user already exists!");
+                } else {
+                    console.error(err);
+                    return res.status(500).send("Database error while signing up")
                 }
-                return console.error(err);
             }
             req.session.userId = obj._id;
             return res.status(200).end("Successfully signed up")
@@ -82,9 +77,9 @@ router.get('/logout', function(req, res, next) {
     if (req.session) {
         req.session.destroy(function(err) {
             if (err) {
-                return res.status(500).end("Could not log out");
+                return res.status(500).end("Database error. Could not log out");
             } else {
-                return res.redirect("/");
+                return res.status(200).redirect("/");
             }
         })
     }
