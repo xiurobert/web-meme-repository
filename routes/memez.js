@@ -5,6 +5,7 @@ let sanitizer = require("sanitizer");
 
 let Meme = require("../models/memes");
 let user = require("../models/user");
+let karma = require("../models/fake_internet_points");
 let auth_mid = require("../mw/requires_login");
 
 router.get('/:id', function(req, res, next) {
@@ -23,24 +24,42 @@ router.get('/:id', function(req, res, next) {
                 user.findById(meme.uId, function(err, user) {
 
                     if (err) {
-                        return res.status(500).end("DB error 2")
+                        return res.status(500).end("DB error could not get user who posted it")
                     }
 
-                    res.render("meme/memeView",
-                        {
-                            title: meme.title,
-                            user: user.username,
-                            isCurrentUser: (meme.uId === req.session.userId),
-                            tags: meme.keywords,
-                            desc: meme.description,
-                            url: meme.mediaLink,
-                            logged_in: (req.session && req.session.userId),
-                            key: meme.key
-                        })
+                    karma.find({memeKey: req.params.id})
+                        .lean()
+                        .then(function(karmas) {
+                        let totalKarma = 0;
+                        for (let i = 0; i < karmas.length; i++) {
+                            totalKarma += karmas[i].amount;
+                        }
+                        res.render("meme/memeView",
+                            {
+                                title: meme.title,
+                                user: user.username,
+                                isCurrentUser: (meme.uId === req.session.userId),
+                                tags: meme.keywords,
+                                desc: meme.description,
+                                url: meme.mediaLink,
+                                logged_in: (req.session && req.session.userId),
+                                key: meme.key,
+                                karma: totalKarma
+                            })
+                    })
+                        .catch(function() {
+                            return res.status(500).end("DB Error could not get karma")
+                        });
+
+
                 })
 
 
             })
+        .catch(function(e) {
+            res.status = 500;
+            return next(e);
+        })
 
 });
 

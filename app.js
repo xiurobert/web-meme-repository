@@ -20,6 +20,7 @@ let authRouter = require('./routes/auth');
 let userZoneRouter = require('./routes/user_area');
 let memeRouter = require('./routes/memez');
 let adminRouter = require('./routes/admin_panel');
+let karmaRouter = require('./routes/karma');
 
 
 let app = express();
@@ -83,6 +84,7 @@ app.use('/auth', authRouter);
 app.use('/z', userZoneRouter);
 app.use('/meme', memeRouter);
 app.use('/admin', adminRouter);
+app.use('/k', karmaRouter);
 
 // Error handlers
 app.use(notFoundMw);

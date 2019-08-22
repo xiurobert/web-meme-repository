@@ -42,6 +42,14 @@
 
 
             <h1>{{ title }}</h1>
+            <p>
+
+                <button class="btn btn-success" id="upBoat" {% if not logged_in %}disabled{% endif %}>Updoot</button>
+
+                <span style="text-decoration: line-through;">Fake internet points</span>
+                Karma: {{ karma }}
+                <button class="btn btn-danger" id="downBoat" {% if not logged_in %}disabled{% endif %}>Downdoot</button>
+            </p>
             <p>Submitted by <i>{{ user }} {% if isCurrentUser %} (you) {% endif %}</i></p>
             <p>Tags</p>
             <div class="dtag-input-tags">
@@ -63,6 +71,32 @@
         $(document).ready(function() {
             $(".dtag-input-tag").click(function(event) {
                 window.location.href = "/meme/search?q=" + $(event.target).closest(".dtag-val").html();
+            });
+
+            $("#upBoat").click(function() {
+                $.ajax({
+                    url: "/k/{{ key }}/upvote",
+                    method: "GET",
+                    success: function() {
+                        window.location.reload();
+                    },
+                    error: function(xhr) {
+                        alert(xhr.responseText);
+                    }
+                })
+            });
+
+            $("#downBoat").click(function() {
+                $.ajax({
+                    url: "/k/{{ key }}/downvote",
+                    method: "GET",
+                    success: function() {
+                        window.location.reload();
+                    },
+                    error: function(xhr) {
+                        alert(xhr.responseText);
+                    }
+                })
             })
         })
     </script>
