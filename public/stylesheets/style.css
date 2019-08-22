@@ -1,8 +1,12 @@
 body {
-  font: 20px "Comic Sans MS", Helvetica, Arial, sans-serif;
+  font: calc(0.85em + 1vw) "Comic Sans MS", Helvetica, Arial, sans-serif;
 }
 body h1 {
+  font-size: 1.5em;
   text-align: center;
+}
+body p {
+  font-size: 0.9em;
 }
 body .jumbotron p {
   text-align: center;
