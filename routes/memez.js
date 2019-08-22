@@ -168,7 +168,7 @@ router.get("/browse/:page", function (req, res, next) {
     }
 
     Meme.countDocuments().exec(function(err, docCount) {
-        if (25 * (page - 1)) {
+        if (25 * (page - 1) > docCount) {
             return res.status(400).end("Page number is too high!");
         }
     });
