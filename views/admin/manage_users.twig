@@ -1,0 +1,61 @@
+{% extends "../tmpl/layout.twig" %}
+{% set title = "Manage Users | Admin Panel" %}
+{% set logged_in = true %}
+{% set is_admin = true %}
+{% set nav_selected = "admin" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/public/stylesheets/admin_zone/admin.css">
+    <link rel="stylesheet" href="/public/stylesheets/tag_input.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>All users</h1>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td><a href="/u/{{ user.username }}">{{ meme.key }}</a></td>
+                            <td>{{ meme.title }}</td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm">Edit</button>
+                                <button class="btn btn-outline-danger btn-sm" onclick="deleteUser('{{ meme.key }}')">Delete</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        function deleteUser(key) {
+            $.ajax({
+                url: "/admin/manage/users/" + key + "/delete",
+                method: "DELETE",
+                success: function(res) {
+                    alert(res);
+                    window.location.reload();
+                }, error: function(xhr) {
+                    alert(xhr.responseText);
+                }
+            })
+        }
+    </script>
+{% endblock %}
