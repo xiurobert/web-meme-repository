@@ -14,8 +14,9 @@
     <div class="container">
         <div class="jumbotron">
             <h1>All memes</h1>
-            <table class="table">
-                <thead>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Unique Key</th>
@@ -24,31 +25,33 @@
                         <th scope="col">Tags</th>
                         <th scope="col">Actions</th>
                     </tr>
-                </thead>
-                <tbody>
-                {% for meme in memes %}
-                    <tr>
-                        <th scope="row">{{ loop.index }}</th>
-                        <td><a href="/meme/{{ meme.key }}">{{ meme.key }}</a></td>
-                        <td>{{ meme.title }}</td>
-                        <td><img src="{{ meme.mediaLink }}" width="30%"></td>
-                        <td>
-                            <div class="dtag-input-tags">
-                                {% for keyword in meme.keywords %}
-                                    <span class="dtag-input-tag">
+                    </thead>
+                    <tbody>
+                    {% for meme in memes %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td><a href="/meme/{{ meme.key }}">{{ meme.key }}</a></td>
+                            <td>{{ meme.title }}</td>
+                            <td><img src="{{ meme.mediaLink }}" width="100%"></td>
+                            <td>
+                                <div class="dtag-input-tags">
+                                    {% for keyword in meme.keywords %}
+                                        <span class="dtag-input-tag">
                                         <span class="dtag-unremovable">&nbsp;{{ keyword }}&nbsp;</span>
                                     </span>
-                                {% endfor %}
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-outline-primary btn-sm">Edit</button>
-                            <button class="btn btn-outline-danger btn-sm" onclick="deleteMeme('{{ meme.key }}')">Delete</button>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                                    {% endfor %}
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm">Edit</button>
+                                <button class="btn btn-outline-danger btn-sm" onclick="deleteMeme('{{ meme.key }}')">Delete</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 {% endblock %}
