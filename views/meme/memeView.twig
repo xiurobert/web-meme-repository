@@ -57,3 +57,13 @@
     </div>
 
 {% endblock %}
+
+{% block js %}
+    <script>
+        $(document).ready(function() {
+            $(".dtag-input-tag").click(function(event) {
+                window.location.href = "/meme/search?q=" + $(event.target).closest(".dtag-val").html();
+            })
+        })
+    </script>
+{% endblock %}

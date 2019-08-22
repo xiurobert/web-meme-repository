@@ -1,4 +1,4 @@
-const ENV = "DEPRECATED";
+const ENV = "DEPRECATED"; // DEPRECATED IN 1.5.0, use NODE_ENV instead
 
 let express = require('express');
 let path = require('path');
