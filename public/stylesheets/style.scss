@@ -22,15 +22,16 @@ body {
     padding-bottom: 1.5rem;
     display: flex;
     align-items: center;
+    margin-right: 0;
+    width: 100%;
 
     font-family: Arial, sans-serif;
-    font-size: 95%;
+    font-size: 80%;
     color: white;
 
     span {
         margin-bottom: 0;
     }
-
 
     .fab:hover {
         color: #007bff;
@@ -47,6 +48,7 @@ body {
 
 .navbar {
     margin-bottom: 2.5%;
+    font-size: 70%;
 }
 
 a {
