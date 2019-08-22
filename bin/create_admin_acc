@@ -1,3 +1,16 @@
 #!/usr/bin/env node
+let cfg;
+if (process.env.NODE_ENV === 'production') {
+    config = require("../config.prod.json");
+} else {
+    config = require("../config.json");
+}
 
+
+const mango_conn = mongoose.connect(config.mongoUri,
+    {useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true});
+let db = mongoose.connection;
+
+//handle mongo error
+db.on('error', console.error.bind(console, 'connection error:'));
 
