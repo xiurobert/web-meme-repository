@@ -6,30 +6,16 @@ let karmaSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    title: {
-        type: String,
-        required: true
-    },
     uId: {
         type: String,
         required: true,
         trim: true
     },
-    keywords: {
-        type: [String],
-        index: true
-    },
-    description: {
-        type: String
-    },
-    memeFormat: {
-        type: String,
+    amount: {
+        type: Number,
         required: true
-    },
-    mediaLink: {
-        type: String
-    },
-    mediaGridFsId: {
-        type: String
     }
 });
+
+let Karma = mongoose.model("Karma", karmaSchema);
+module.exports = Karma;
