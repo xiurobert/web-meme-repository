@@ -21,25 +21,6 @@
                 </div>
             </div>
         </div>
-
-        {% if memes|length > 0 %}
-
-        <div class="jumbotron">
-            <h1>Manage my memes</h1>
-            <p>Manage your memes, edit or delete the submissions</p>
-
-            <div id="yourMemes">
-                {% for meme in memes[:3] %}
-                    <div class="meme" onclick="window.location.href = '/meme/{{ meme.key }}'">
-                        <p>{{ meme.title }}</p>
-                        <img src="{{ meme.mediaLink }}" width="100%">
-                    </div>
-                {% endfor %}
-            </div>
-
-        </div>
-
-        {% endif %}
     </div>
 {% endblock %}
 
