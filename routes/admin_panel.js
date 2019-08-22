@@ -12,7 +12,7 @@ function adminMwStack(lvl) {
 }
 
 
-router.get('/', adminMwStack(4), function(req, res, next) {
+router.get('/', adminMwStack(1), function(req, res, next) {
     return res.render("admin/main");
 });
 
@@ -23,6 +23,26 @@ router.get('/manage/memes', adminMwStack(3), function(req, res, next) {
         return res.render("admin/manage_memes", {memes: docs})
     });
 
+});
+
+router.delete('/manage/memes/:id/delete', adminMwStack(3), function(req, res, next) {
+    memes.findOne({key: req.params.id})
+        .then(function(meme) {
+        if (!meme) {
+            return res.status(400).send("Meme with that id not found");
+        }
+
+        memes.findByIdAndDelete(meme.id)
+            .then(function() {
+            return res.status(200).send("Meme successfully deleted");
+        })
+            .catch(function(e) {
+                return res.status(500).send("DB error could not delete meme")
+            })
+    })
+        .catch(function(e) {
+            return res.status(500).send("DB error could not search for meme")
+        })
 });
 
 module.exports = router;

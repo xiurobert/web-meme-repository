@@ -43,7 +43,7 @@
                         </td>
                         <td>
                             <button class="btn btn-outline-primary btn-sm">Edit</button>
-                            <button class="btn btn-outline-danger btn-sm">Delete</button>
+                            <button class="btn btn-outline-danger btn-sm" onclick="deleteMeme('{{ meme.key }}')">Delete</button>
                         </td>
                     </tr>
                 {% endfor %}
@@ -54,4 +54,18 @@
 {% endblock %}
 
 {% block js %}
+    <script>
+        function deleteMeme(key) {
+            $.ajax({
+                url: "/admin/manage/memes/" + key + "/delete",
+                method: "DELETE",
+                success: function(res) {
+                    alert(res);
+                    window.location.reload();
+                }, error: function(xhr) {
+                    alert(xhr.responseText);
+                }
+            })
+        }
+    </script>
 {% endblock %}
