@@ -28,7 +28,7 @@
                     <tbody>
                     {% for meme in memes %}
                         <tr>
-                            <th scope="row">{{ loop.index + 25 * pag}}</th>
+                            <th scope="row">{{ loop.index + 25 * (page - 1)}}</th>
                             <td><a href="/meme/{{ meme.key }}">{{ meme.title }}</a></td>
                             <td><img src="{{ meme.mediaLink }}" width="100%"></td>
                             <td>
