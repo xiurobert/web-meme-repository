@@ -1,0 +1,10 @@
+{
+    "frontEndConfig" : {
+      "siteName": "ProgrammerHumor2",
+      "siteShort": "PH2"
+    },
+    "version" : {
+      "app": "1.9.2",
+      "admin": "0.0.2"
+    }
+}

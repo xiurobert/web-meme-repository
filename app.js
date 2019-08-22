@@ -71,6 +71,8 @@ app.use(session({
     })
 }));
 
+// Set locals
+app.locals = require("./app_config.json");
 
 // serve static
 app.use('/public', express.static(path.join(__dirname, 'public')));
