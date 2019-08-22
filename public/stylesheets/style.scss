@@ -1,6 +1,11 @@
+html {
+    height: 100%;
+}
+
 body {
     //padding: 50px;
     font: calc(0.85em + 1vw) "Comic Sans MS", Helvetica, Arial, sans-serif;
+    height: 100%;
 
     h1 {
         font-size: 1.5em;
@@ -15,6 +20,22 @@ body {
             text-align: center;
         }
     }
+
+
+}
+
+header {
+    height: 15%;
+}
+
+main {
+    min-height: 70%;
+
+}
+
+
+footer {
+    height: 10%
 }
 
 .footer {
@@ -47,8 +68,9 @@ body {
 }
 
 .navbar {
-    margin-bottom: 2.5%;
+    margin-bottom: 5%;
     font-size: 70%;
+    z-index: 999;
 }
 
 a {
