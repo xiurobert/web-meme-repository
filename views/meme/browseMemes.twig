@@ -15,34 +15,37 @@
                 </div>
             </div>
             <h1>Browse memes</h1>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Image URL</th>
-                    <th scope="col">Tags</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for meme in memes %}
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
                     <tr>
-                        <th scope="row">{{ loop.index }}</th>
-                        <td><a href="/meme/{{ meme.key }}">{{ meme.title }}</a></td>
-                        <td><img src="{{ meme.mediaLink }}" width="30%"></td>
-                        <td>
-                            <div class="dtag-input-tags">
-                                {% for keyword in meme.keywords %}
-                                    <span class="dtag-input-tag">
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Image URL</th>
+                        <th scope="col">Tags</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for meme in memes %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td><a href="/meme/{{ meme.key }}">{{ meme.title }}</a></td>
+                            <td><img src="{{ meme.mediaLink }}" width="100%"></td>
+                            <td>
+                                <div class="dtag-input-tags">
+                                    {% for keyword in meme.keywords %}
+                                        <span class="dtag-input-tag">
                                         <span class="dtag-unremovable">&nbsp;{{ keyword }}&nbsp;</span>
                                     </span>
-                                {% endfor %}
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                                    {% endfor %}
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 {% endblock %}
