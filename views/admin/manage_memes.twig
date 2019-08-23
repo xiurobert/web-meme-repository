@@ -13,7 +13,23 @@
 {% block body %}
     <div class="container">
         <div class="jumbotron">
-            <h1>All memes</h1>
+            <div class="row" style="text-align: center; margin-bottom: 2.5%">
+                <div class="col">
+                    <button class="btn btn-outline-dark" {% if page == 1 %}hidden{% endif %}
+                            onclick="window.location.href = '/meme/browse/{{ page - 1 }}'">
+                        <i class="material-icons" style="margin: 0 auto">navigate_before</i>
+                    </button>
+                </div>
+                <div class="col">
+                    Page: {{ page }}
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-dark"{% if memeCount < 25 %}hidden{% endif %}
+                            onclick="window.location.href = '/meme/browse/{{ page + 1 }}'">
+                        <i class="material-icons" style="margin: 0 auto">navigate_next</i>
+                    </button>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -50,6 +66,24 @@
                     {% endfor %}
                     </tbody>
                 </table>
+            </div>
+
+            <div class="row" style="text-align: center; margin-top: 2.5%">
+                <div class="col">
+                    <button class="btn btn-outline-dark" {% if page == 1 %}hidden{% endif %}
+                            onclick="window.location.href = '/meme/browse/{{ page - 1 }}'">
+                        <i class="material-icons" style="margin: 0 auto">navigate_before</i>
+                    </button>
+                </div>
+                <div class="col">
+                    MEeee<span style="color: red">eee</span>eeeME
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-dark"{% if memeCount < 25 %}hidden{% endif %}
+                            onclick="window.location.href = '/meme/browse/{{ page + 1 }}'">
+                        <i class="material-icons" style="margin: 0 auto">navigate_next</i>
+                    </button>
+                </div>
             </div>
 
         </div>
