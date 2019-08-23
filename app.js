@@ -50,7 +50,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
 
 // application level middleware setup
-app.use(logger('dev', {stream: fs.createWriteStream('./access.log', {flags: 'a'})}));
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
