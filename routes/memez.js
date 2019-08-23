@@ -242,7 +242,13 @@ router.get("/browse/:page", function (req, res, next) {
             .lean()
             .then(function (docs) {
                 docs.pop();
-                return res.render("meme/browseMemes", {memes: docs, page: page, memeCount: docs.length, totalMemes: docCount})
+                return res.render("meme/browseMemes", {
+                    memes: docs,
+                    page: page,
+                    memeCount: docs.length,
+                    totalMemes: docCount,
+                    logged_in: (req.session && req.session.userId)
+                })
             })
             .catch(function(err) {
                 res.status = 500;
