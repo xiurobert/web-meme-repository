@@ -18,23 +18,30 @@ router.get('/:id/upvote', auth, function(req, res, next) {
         });
 
     karma.findOne({uId: req.session.userId, memeKey: req.params.id})
+        .lean()
         .then(function(doc) {
         if (doc) {
-            // If the user has already upvoted, make it remove the upvote
+            // If the user has already upvoted, make it remove the upvote (Delete the doc)
             if (doc.amount === 1) {
-                doc.set("amount", 0)
+                karma.findOneAndDelete({uId: req.session.userId, memeKey: req.params.id})
+                    .then(function() {
+                        return res.status(200).send("Successfully removed the downvote");
+                    })
+                    .catch(function() {
+                        return res.status(500).send("DB error while removing downvote");
+                    })
             }
             // If the user has downvoted or hasn't upvoted, make it upvote
             if (doc.amount === -1 || doc.amount === 0) {
-                doc.amount = 1;
+
+                karma.findOneAndUpdate({uId: req.session.userId, memeKey: req.params.id}, {amount: 1})
+                    .then(function() {
+                        return res.status(200).send("Successfully downvoted the post");
+                    })
+                    .catch(function() {
+                        return res.status(500).send("DB error while downvoting the post");
+                    });
             }
-            doc.save()
-                .then(function() {
-                    return res.status(200).send("Successfully applied karma changes");
-                })
-                .catch(function() {
-                    return res.status(500).send("DB error while saving karma changes")
-                });
 
         }
 
@@ -74,24 +81,27 @@ router.get('/:id/downvote', auth, function(req, res, next) {
     karma.findOne({uId: req.session.userId, memeKey: req.params.id})
         .then(function(doc) {
             if (doc) {
-                // If the user has already downvoted, make it remove the downvote
+                // If the user has already downvoted, make it remove the downvote (Delete the doc)
                 if (doc.amount === -1) {
-                    doc.set("amount", 0)
+                    karma.findOneAndDelete({uId: req.session.userId, memeKey: req.params.id})
+                        .then(function() {
+                            return res.status(200).send("Successfully removed the downvote");
+                        })
+                        .catch(function() {
+                            return res.status(500).send("DB error while removing downvote");
+                        })
                 }
                 // If the user has upvoted or hasn't upvoted, make it downvote
                 if (doc.amount === 1 || doc.amount === 0) {
-                    doc.amount = -1;
+
+                    karma.findOneAndUpdate({uId: req.session.userId, memeKey: req.params.id}, {amount: -1})
+                        .then(function() {
+                            return res.status(200).send("Successfully downvoted the post");
+                        })
+                        .catch(function() {
+                            return res.status(500).send("DB error while downvoting the post");
+                        });
                 }
-
-
-                doc.save()
-                    .then(function() {
-                        return res.status(200).send("Successfully applied karma changes");
-                    })
-                    .catch(function() {
-                        return res.status(500).send("DB error while saving karma changes")
-                    });
-
             }
 
             // User hasn't upvoted/downvoted before, create a new entry
