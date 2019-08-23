@@ -1,15 +1,14 @@
-var express = require('express');
-var router = express.Router();
-var user = require("../models/user");
-var Meme = require("../models/memes");
-var auth_mid = require("../mw/requires_login");
-var crypto = require("crypto");
+let express = require('express');
+let router = express.Router();
+let user = require("../models/user");
+let Meme = require("../models/memes");
+let auth_mid = require("../mw/requires_login");
+let crypto = require("crypto");
 let validate = require("email-validator");
-var sanitizer = require("sanitizer");
-var base64url = require('base64url');
-
-//var multer = require('multer');
-var date = Date.now();
+let sanitizer = require("sanitizer");
+let base64url = require('base64url');
+let date = Date.now();
+const isImageUrl = require("is-image-url");
 // var GridFsStorage = require('multer-gridfs-storage')({
 //     url: 'mongodb://localhost:27017/meme',
 //     //db: main.mango,
@@ -194,7 +193,9 @@ router.put("/submitMemeLink", auth_mid.auth_check, function(req, res, next) {
             return res.status(400).send("Base64 images are disallowed");
         }
 
-
+        if (!isImageUrl(req.body.url)) {
+            return res.status(400).send("URL is not an image!");
+        }
 
         var meme = new Meme({
             title: sanitizer.sanitize(req.body.title),

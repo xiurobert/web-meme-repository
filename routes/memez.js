@@ -194,7 +194,7 @@ router.get("/random", function(req, res, next) {
    Meme.countDocuments().exec(function(err, count) {
 
        if (count === 0) {
-           return res.status(400).end("There are no memes m8");
+           return res.redirect("/");
        }
 
        if (err) {
@@ -227,12 +227,13 @@ router.get("/browse/:page", function (req, res, next) {
     }
 
     Meme.countDocuments().exec(function(err, docCount) {
-        if (25 * (page - 1) >  docCount) {
-            return res.status(400).end("Page number is too high!");
-        }
 
         if (docCount === 0) {
-            return res.status(400).end("There are no memes m8")
+            return res.redirect("/")
+        }
+
+        if (25 * (page - 1) >  docCount) {
+            return res.redirect("/meme/browse/" + parseInt(page - 1));
         }
 
         Meme.find()
