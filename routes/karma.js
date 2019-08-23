@@ -25,10 +25,10 @@ router.get('/:id/upvote', auth, function(req, res, next) {
             if (doc.amount === 1) {
                 karma.findOneAndDelete({uId: req.session.userId, memeKey: req.params.id})
                     .then(function() {
-                        return res.status(200).send("Successfully removed the downvote");
+                        return res.status(200).send("Successfully removed the upvote (0)");
                     })
                     .catch(function() {
-                        return res.status(500).send("DB error while removing downvote");
+                        return res.status(500).send("DB error while removing upvote");
                     })
             }
             // If the user has downvoted or hasn't upvoted, make it upvote
@@ -36,10 +36,10 @@ router.get('/:id/upvote', auth, function(req, res, next) {
 
                 karma.findOneAndUpdate({uId: req.session.userId, memeKey: req.params.id}, {amount: 1})
                     .then(function() {
-                        return res.status(200).send("Successfully downvoted the post");
+                        return res.status(200).send("Successfully upvoted the post (+1)");
                     })
                     .catch(function() {
-                        return res.status(500).send("DB error while downvoting the post");
+                        return res.status(500).send("DB error while upvoting the post");
                     });
             }
 
@@ -55,7 +55,7 @@ router.get('/:id/upvote', auth, function(req, res, next) {
             });
             karmaChangeAction.save()
                 .then(function() {
-                    return res.status(200).send("Upvoted the post");
+                    return res.status(200).send("Upvoted the post (+1)");
                 })
                 .catch(function() {
                     return res.status(500).send("DB error while making a new upvote");
@@ -85,7 +85,7 @@ router.get('/:id/downvote', auth, function(req, res, next) {
                 if (doc.amount === -1) {
                     karma.findOneAndDelete({uId: req.session.userId, memeKey: req.params.id})
                         .then(function() {
-                            return res.status(200).send("Successfully removed the downvote");
+                            return res.status(200).send("Successfully removed the downvote (0)");
                         })
                         .catch(function() {
                             return res.status(500).send("DB error while removing downvote");
@@ -96,7 +96,7 @@ router.get('/:id/downvote', auth, function(req, res, next) {
 
                     karma.findOneAndUpdate({uId: req.session.userId, memeKey: req.params.id}, {amount: -1})
                         .then(function() {
-                            return res.status(200).send("Successfully downvoted the post");
+                            return res.status(200).send("Successfully downvoted the post (-1)");
                         })
                         .catch(function() {
                             return res.status(500).send("DB error while downvoting the post");
@@ -114,7 +114,7 @@ router.get('/:id/downvote', auth, function(req, res, next) {
                 });
                 karmaChangeAction.save()
                     .then(function() {
-                        return res.status(200).send("Downvoted the post");
+                        return res.status(200).send("Downvoted the post (-1)");
                     })
                     .catch(function() {
                         return res.status(500).send("DB error while making a new downvote");
