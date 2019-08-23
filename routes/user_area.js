@@ -74,6 +74,7 @@ router.get('/my_submissions', auth_mid.auth_check, function(req, res, next) {
         if (err) {
             return next(err);
         }
+        obj.pop();
         res.render('user_zone/my_submissions', {memes: obj});
     });
 
