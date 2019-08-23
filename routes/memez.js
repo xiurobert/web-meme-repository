@@ -234,21 +234,23 @@ router.get("/browse/:page", function (req, res, next) {
         if (docCount === 0) {
             return res.status(400).end("There are no memes m8")
         }
+
+        Meme.find()
+            .skip(25 * (page - 1))
+            .limit(25)
+            .lean()
+            .then(function (docs) {
+                docs.pop();
+                return res.render("meme/browseMemes", {memes: docs, page: page, memeCount: docs.length, totalMemes: docCount})
+            })
+            .catch(function(err) {
+                res.status = 500;
+                return next(err);
+            })
     });
 
 
-    Meme.find()
-        .skip(25 * (page - 1))
-        .limit(25)
-        .lean()
-        .then(function (docs) {
-            docs.pop();
-            return res.render("meme/browseMemes", {memes: docs, page: page, memeCount: docs.length})
-        })
-        .catch(function(err) {
-            res.status = 500;
-            return next(err);
-        })
+
 });
 
 router.put('/meme/:id/update', function(req, res, next) {

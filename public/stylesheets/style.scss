@@ -54,9 +54,16 @@ footer {
         margin-bottom: 0;
     }
 
-    .fab:hover {
-        color: #007bff;
-        cursor: pointer;
+    .icon-hover {
+        position: relative;
+        top: 0;
+        transition: top ease 0.5s;
+
+        &:hover {
+            top: -0.5rem;
+            color: #00B7FF;
+            cursor: pointer;
+        }
     }
 
     .copyright {

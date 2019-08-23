@@ -43,8 +43,14 @@ footer {
 .footer span {
   margin-bottom: 0;
 }
-.footer .fab:hover {
-  color: #007bff;
+.footer .icon-hover {
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
+.footer .icon-hover:hover {
+  top: -0.5rem;
+  color: #00B7FF;
   cursor: pointer;
 }
 .footer .copyright {

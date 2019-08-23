@@ -5,6 +5,9 @@ $(document).ready(function() {
         window.location.href = "https://github.com/xiurobert/web-meme-repository"
     });
 
+    $(".fa-bug").click(function() {
+        window.location.href = "https://github.com/xiurobert/web-meme-repository/issues"
+    })
 
 });
 window.onload = function() {
