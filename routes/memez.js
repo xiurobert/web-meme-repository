@@ -227,11 +227,11 @@ router.get("/browse/:page", function (req, res, next) {
     }
 
     Meme.countDocuments().exec(function(err, docCount) {
-        if (25 * (page - 1) >  docCount - 1) {
+        if (25 * (page - 1) >  docCount) {
             return res.status(400).end("Page number is too high!");
         }
 
-        if (docCount - 1 === 0) {
+        if (docCount === 0) {
             return res.status(400).end("There are no memes m8")
         }
     });
