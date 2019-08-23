@@ -34,21 +34,56 @@ router.get('/:id', function(req, res, next) {
                         for (let i = 0; i < karmas.length; i++) {
                             totalKarma += karmas[i].amount;
                         }
-                        res.render("meme/memeView",
-                            {
-                                title: meme.title,
-                                user: user.username,
-                                isCurrentUser: (meme.uId === req.session.userId),
-                                tags: meme.keywords,
-                                desc: meme.description,
-                                url: meme.mediaLink,
-                                logged_in: (req.session && req.session.userId),
-                                key: meme.key,
-                                karma: totalKarma
-                            })
+
+                        // load karma since user is logged in
+                        if (req.session && req.session.userId) {
+                            karma.findOne({uId: req.session.userId, memeKey: meme.key})
+                                .then(function(karmaDoc) {
+
+                                    let change = 0;
+                                    if (karmaDoc) {
+                                        change = karmaDoc.amount;
+                                    }
+
+                                    return res.render("meme/memeView",
+                                        {
+                                            title: meme.title,
+                                            user: user.username,
+                                            isCurrentUser: (meme.uId === req.session.userId),
+                                            tags: meme.keywords,
+                                            desc: meme.description,
+                                            url: meme.mediaLink,
+                                            logged_in: (req.session && req.session.userId),
+                                            key: meme.key,
+                                            karma: totalKarma,
+                                            userKarmaChange: change
+                                        })
+                                })
+                                .catch(function(err) {
+                                    res.status = 500;
+                                    return next(err)
+                                })
+                        }
+
+                        else {
+                            return res.render("meme/memeView",
+                                {
+                                    title: meme.title,
+                                    user: user.username,
+                                    isCurrentUser: (meme.uId === req.session.userId),
+                                    tags: meme.keywords,
+                                    desc: meme.description,
+                                    url: meme.mediaLink,
+                                    logged_in: (req.session && req.session.userId),
+                                    key: meme.key,
+                                    karma: totalKarma,
+                                })
+                        }
+
+
                     })
                         .catch(function() {
-                            return res.status(500).end("DB Error could not get karma")
+                            return res.status(500).end("DB Error could not get karma for current post")
                         });
 
 

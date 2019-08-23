@@ -44,11 +44,18 @@
             <h1>{{ title }}</h1>
             <p>
 
-                <button class="btn btn-success" id="upBoat" {% if not logged_in %}disabled{% endif %}>Updoot</button>
+                <button class="btn {% if userKarmaChange < 1 %}btn-outline-success{% else %}btn-success{% endif %}"
+                        id="upBoat"
+                        {% if not logged_in %}disabled{% endif %}>
+                    Updoot
+                </button>
 
                 <span style="text-decoration: line-through;">Fake internet points</span>
                 Karma: {{ karma }}
-                <button class="btn btn-danger" id="downBoat" {% if not logged_in %}disabled{% endif %}>Downdoot</button>
+                <button class="btn {% if userKarmaChange > -1 %}btn-outline-danger{% else %}btn-danger{% endif %}"
+                        id="downBoat" {% if not logged_in %}disabled{% endif %}>
+                    Downdoot
+                </button>
             </p>
             <p>Submitted by <i>{{ user }} {% if isCurrentUser %} (you) {% endif %}</i></p>
             <p>Tags</p>
@@ -77,8 +84,18 @@
                 $.ajax({
                     url: "/k/{{ key }}/upvote",
                     method: "GET",
-                    success: function() {
-                        window.location.reload();
+                    success: function(res) {
+                        if (res.includes("1")) {
+                            // user has upvoted
+                            $("#upBoat").val("Remove updoot");
+                            $("#upBoat").removeClass("btn-outline-success");
+                            $("#upBoat").addClass("btn-success")
+                        } else if (res.includes("0")) {
+                            // user removed upvote
+                            $("#upBoat").val("Updoot");
+                            $("#upBoat").removeClass("btn-success");
+                            $("#upBoat").addClass("btn-outline-success");
+                        }
                     },
                     error: function(xhr) {
                         alert(xhr.responseText);
@@ -90,8 +107,18 @@
                 $.ajax({
                     url: "/k/{{ key }}/downvote",
                     method: "GET",
-                    success: function() {
-                        window.location.reload();
+                    success: function(res) {
+                        if (res.includes("-1")) {
+                            // user has downvoted
+                            $("#downBoat").val("Remove downdoot");
+                            $("#downBoat").removeClass("btn-outline-danger");
+                            $("#downBoat").addClass("btn-danger");
+                        } else if (res.includes("0")) {
+                            // user removed downvote
+                            $("#downBoat").val("Downdoot");
+                            $("#downBoat").removeClass("btn-danger");
+                            $("#downBoat").addClass("btn-outline-danger");
+                        }
                     },
                     error: function(xhr) {
                         alert(xhr.responseText);
