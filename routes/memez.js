@@ -234,7 +234,7 @@ router.get("/browse/:page", function (req, res, next) {
         .lean()
         .then(function (docs) {
             docs.pop();
-            return res.render("meme/browseMemes", {memes: docs, page: page})
+            return res.render("meme/browseMemes", {memes: docs, page: page, memeCount: docs.length})
         })
         .catch(function(err) {
             res.status = 500;
