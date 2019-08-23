@@ -27,11 +27,11 @@
                     {% for user in users %}
                         <tr>
                             <th scope="row">{{ loop.index }}</th>
-                            <td><a href="/u/{{ user.username }}">{{ meme.key }}</a></td>
-                            <td>{{ meme.title }}</td>
+                            <td><a href="/u/{{ user.username }}">{{ user.username }}</a></td>
+                            <td>{{ user.email }}</td>
                             <td>
                                 <button class="btn btn-outline-primary btn-sm">Edit</button>
-                                <button class="btn btn-outline-danger btn-sm" onclick="deleteUser('{{ meme.key }}')">Delete</button>
+                                <button class="btn btn-outline-danger btn-sm" onclick="deleteUser('{{ user.username }}')">Delete</button>
                             </td>
                         </tr>
                     {% endfor %}
