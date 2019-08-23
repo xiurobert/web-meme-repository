@@ -1,7 +1,8 @@
 #yourMemes {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 #yourMemes p {
   text-align: center;
@@ -10,11 +11,10 @@
   margin-bottom: 0;
 }
 #yourMemes .meme {
+  margin: 2.5%;
   border: 1px solid black;
   max-width: 30%;
   flex-grow: 1;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
   cursor: pointer;
 }
 
