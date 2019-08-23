@@ -49,7 +49,7 @@ footer {
   transition: top ease 0.5s;
 }
 .footer .icon-hover:hover {
-  top: -0.5rem;
+  top: -0.25rem;
   color: #00B7FF;
   cursor: pointer;
 }
